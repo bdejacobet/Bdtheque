@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VagrantSettings">
-    <option name="instanceFolder" value="D:\vagrant_bdtheque" />
-    <option name="provider" value="" />
-    <option name="vagrantExecutable" value="C:\Program Files (x86)\vagrant\bin\vagrant.exe" />
-  </component>
-</project>
-
