@@ -1,0 +1,18 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - liste des bd{% endblock %}
+
+{% block body %}
+    {%  for oComicStrip in aComicStrip %}
+        <div class="well">
+            nom : {{ oComicStrip.title }}<br/>
+            resumé : {{ oComicStrip.resume }}<br/>
+            auteur : {{ oComicStrip.author }}<br/>
+            date : {{ oComicStrip.date|date("m/d/Y") }}<br/>
+            <a href="{{ path('beni_bdtheque_details',{'idComicStrip':oComicStrip.id}) }}">Détails</a>
+        </div>
+    {% else %}
+        <p>Pas (encore !) de BD</p>
+    {% endfor %}
+    <a href="{{ path('beni_bdtheque_create') }}">Ajouter une BD</a>
+{% endblock %}

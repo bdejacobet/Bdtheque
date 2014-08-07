@@ -1,0 +1,7 @@
+parameters:
+#    beni_user.example.class: Beni\UserBundle\Example
+
+services:
+#    beni_user.example:
+#        class: %beni_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

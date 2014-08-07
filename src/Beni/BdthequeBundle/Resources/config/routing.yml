@@ -1,0 +1,19 @@
+beni_bdtheque_homepage:
+    pattern:  /
+    defaults: { _controller: BeniBdthequeBundle:Default:home }
+
+beni_bdtheque_list:
+    pattern:  /list
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:list }
+
+beni_bdtheque_create:
+    pattern:  /create
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:create }
+
+beni_bdtheque_delete:
+    pattern:  /delete/{idComicStrip}
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:delete }
+
+beni_bdtheque_details:
+    pattern:  /details/{idComicStrip}
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:details }

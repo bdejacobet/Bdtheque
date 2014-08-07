@@ -1,0 +1,18 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - ajouter une bd{% endblock %}
+
+{% block body %}
+
+    <h2>Ajouter une BD</h2>
+
+    {% include "BeniBdthequeBundle:ComicStrip:form.html.twig" %}
+
+    <p>
+        <a href="{{ path('beni_bdtheque_list') }}" class="btn">
+            <i class="icon-chevron-left"></i>
+            Retour
+        </a>
+    </p>
+
+{% endblock %}

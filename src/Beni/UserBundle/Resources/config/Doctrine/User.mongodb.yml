@@ -1,0 +1,4 @@
+Beni\UserBundle\Document\User:
+    fields:
+        id:
+            id:  true

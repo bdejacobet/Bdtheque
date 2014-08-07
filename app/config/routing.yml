@@ -1,0 +1,7 @@
+beni_user:
+    resource: "@BeniUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+beni_bdtheque:
+    resource: "@BeniBdthequeBundle/Resources/config/routing.yml"
+    prefix:   /

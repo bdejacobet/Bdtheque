@@ -1,0 +1,14 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Details '{{ oComicStrip.title }}'{% endblock %}
+
+{% block body %}
+    <div class="well">
+        titre : {{ oComicStrip.title }}<br/>
+        auteur : {{ oComicStrip.author }}<br/>
+        resume : {{ oComicStrip.resume }}<br/>
+        date : {{ oComicStrip.date|date("m/d/Y") }}<br/>
+    </div>
+    <a href="{{ path('beni_bdtheque_delete', {'idComicStrip':oComicStrip.id}) }}">Supprimer</a>
+    <a href="{{ path('beni_bdtheque_list') }}">Retour liste</a>
+{% endblock %}

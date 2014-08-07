@@ -1,0 +1,7 @@
+parameters:
+#    beni_bdtheque.example.class: Beni\BdthequeBundle\Example
+
+services:
+#    beni_bdtheque.example:
+#        class: %beni_bdtheque.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

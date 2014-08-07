@@ -1,0 +1,12 @@
+Beni\BdthequeBundle\Document\ComicStrip:
+    fields:
+        id:
+            id:  true
+        title:
+            type: string
+        author:
+            type: string
+        resume:
+            type: string
+        date:
+            type: date
