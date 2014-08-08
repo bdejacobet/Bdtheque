@@ -3,9 +3,10 @@
 {% block title %}{{ parent() }} - Home{% endblock %}
 
 {% block body %}
-
-    <h2>Ma Bdtheque!!</h2>
-
-
-    <a href="{{ path('beni_bdtheque_list') }}">afficher ma liste de BDs</a>
+    <div class="container">
+        <div class="starter-template">
+            <h2>Ma Bdtheque!!</h2>
+            <a href="{{ path('beni_bdtheque_list') }}">afficher ma liste de BDs</a>
+        </div>
+    </div>
 {% endblock %}

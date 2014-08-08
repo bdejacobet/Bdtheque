@@ -1,0 +1,15 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="starter-template">
+        <div class="fos_user_group_list">
+            <ul>
+            {% for group in groups %}
+                <li><a href="{{ path('fos_user_group_show', {'groupName': group.getName()} ) }}">{{ group.getName() }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -7,21 +7,27 @@
     <title>{% block title %}Bdthèque{% endblock %}</title>
 
     <!-- Bootstrap -->
-    {% stylesheets 'bundles/benibdtheque/css/bootstrap.min.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% stylesheets filter='cssrewrite'
+        '@BeniBdthequeBundle/Resources/public/css/bootstrap.min.css'
+        '@BeniBdthequeBundle/Resources/public/css/default.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
     {% endstylesheets %}
 
 </head>
 <body>
 
+{% block nav %}
+    {% include "BeniBdthequeBundle:Default:nav.html.twig" %}
+{% endblock %}
 
-{% block flashBag %}
-    {% for flashMessage in app.session.flashbag.get('info') %}
-        <div class="flash-info">
-            {{ flashMessage }}
+{% for type, messages in app.session.flashbag.all() %}
+    {% for message in messages %}
+        <div class="flash-{{ type }}">
+            {{ message }}
         </div>
     {% endfor %}
-{% endblock %}
+{% endfor %}
 
 {% block body %}
 {% endblock %}
