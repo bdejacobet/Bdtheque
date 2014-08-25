@@ -1,6 +1,6 @@
 beni_bdtheque_home:
     pattern: /
-    defaults: { _controller: BeniBdthequeBundle:Default:home }
+    defaults: { _controller: BeniBdthequeBundle:Home:home }
 
 beni_bdtheque_list:
     pattern:  /list

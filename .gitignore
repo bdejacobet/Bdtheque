@@ -12,3 +12,5 @@
 
 /web
 /.idea
+
+app/phpunit.xml
