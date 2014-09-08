@@ -5,8 +5,11 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li {%  if app.request.attributes.get('_route') == 'beni_bdtheque_list' %}class="active"{% endif %}>
-                    <a href="{{ path('beni_bdtheque_list') }}">Ma liste de BDs</a>
+                <li {%  if app.request.attributes.get('_route') == 'beni_bdtheque_series_list' %}class="active"{% endif %}>
+                    <a href="{{ path('beni_bdtheque_series_list') }}">Ma liste de séries</a>
+                </li>
+                <li {%  if app.request.attributes.get('_route') == 'beni_bdtheque_comicstrip_list' %}class="active"{% endif %}>
+                    <a href="{{ path('beni_bdtheque_comicstrip_list') }}">Ma liste de BDs</a>
                 </li>
             </ul>
             {% if app.user %}

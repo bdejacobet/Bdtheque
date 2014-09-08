@@ -11,8 +11,11 @@
                 resume : {{ oComicStrip.resume }}<br/>
                 date : {{ oComicStrip.date|date("m/d/Y") }}<br/>
             </div>
-            <a href="{{ path('beni_bdtheque_delete', {'idComicStrip':oComicStrip.id}) }}">Supprimer</a>
-            <a href="{{ path('beni_bdtheque_list') }}">Retour liste</a>
+            <a href="{{ path('beni_bdtheque_comicstrip_edit', {'idComicStrip':oComicStrip.id}) }}">Modifier</a>
+             -
+            <a href="{{ path('beni_bdtheque_comicstrip_delete', {'idComicStrip':oComicStrip.id}) }}">Supprimer</a>
+            -
+            <a href="{{ path('beni_bdtheque_comicstrip_list') }}">Retour liste</a>
         </div>
     </div>
 {% endblock %}

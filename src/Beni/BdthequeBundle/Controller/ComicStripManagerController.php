@@ -36,7 +36,7 @@ class ComicStripManagerController extends Controller
     }
 
     /**
-     * creation of a comic strip
+     * Creation of a comic strip
      *
      * @return Response
      */
@@ -56,11 +56,44 @@ class ComicStripManagerController extends Controller
 
                 $this->get('session')->getFlashBag()->add('info', 'BD bien créée');
 
-                return $this->redirect($this->generateUrl('beni_bdtheque_details', array('idComicStrip' => $oComicStrip->getId())));
+                return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
             }
         }
 
         return $this->render('BeniBdthequeBundle:ComicStrip:create.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Edition of a comic strip
+     *
+     * @param $idComicStrip
+     * @return Response
+     */
+    public function EditAction($idComicStrip)
+    {
+        $oComicStrip = $this->get('doctrine_mongodb')
+            ->getRepository('BeniBdthequeBundle:ComicStrip')
+            ->find($idComicStrip);
+        $form = $this->createForm(new ComicStripform, $oComicStrip);
+
+        $request = $this->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->get('doctrine_mongodb')->getManager();
+                $em->persist($oComicStrip);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('info', 'BD bien mise à jour');
+
+                return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
+            }
+        }
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:edit.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -89,7 +122,7 @@ class ComicStripManagerController extends Controller
 
         }
 
-        return $this->redirect($this->generateUrl('beni_bdtheque_list'));
+        return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_list'));
     }
 
     /**

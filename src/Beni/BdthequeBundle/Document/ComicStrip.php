@@ -21,6 +21,8 @@ class ComicStrip
 
     protected $date;
 
+    protected $series;
+
     /**
      * Get id
      *
@@ -118,6 +120,28 @@ class ComicStrip
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * Get series
+     *
+     * @return Series $series
+     */
+    public function getSeries()
+    {
+        return $this->series;
+    }
+
+    /**
+     * Set series
+     *
+     * @param Series $series
+     * @return self
+     */
+    public function setSeries($series)
+    {
+        $this->series = $series;
         return $this;
     }
 

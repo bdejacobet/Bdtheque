@@ -2,18 +2,38 @@ beni_bdtheque_home:
     pattern: /
     defaults: { _controller: BeniBdthequeBundle:Home:home }
 
-beni_bdtheque_list:
-    pattern:  /list
+beni_bdtheque_series_list:
+    pattern:  /series/list
+    defaults: { _controller: BeniBdthequeBundle:SeriesManager:list }
+
+beni_bdtheque_series_create:
+    pattern:  /series/create
+    defaults: { _controller: BeniBdthequeBundle:SeriesManager:create }
+
+beni_bdtheque_series_edit:
+    pattern:  /series/edit/{idSeries}
+    defaults: { _controller: BeniBdthequeBundle:SeriesManager:edit }
+
+beni_bdtheque_series_delete:
+    pattern:  /series/delete/{idSeries}
+    defaults: { _controller: BeniBdthequeBundle:SeriesManager:delete }
+
+beni_bdtheque_comicstrip_list:
+    pattern:  /comicstrip/list
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:list }
 
-beni_bdtheque_create:
-    pattern:  /create
+beni_bdtheque_comicstrip_create:
+    pattern:  /comicstrip/create
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:create }
 
-beni_bdtheque_delete:
-    pattern:  /delete/{idComicStrip}
+beni_bdtheque_comicstrip_edit:
+    pattern:  /comicstrip/edit/{idComicStrip}
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:edit }
+
+beni_bdtheque_comicstrip_delete:
+    pattern:  /comicstrip/delete/{idComicStrip}
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:delete }
 
-beni_bdtheque_details:
-    pattern:  /details/{idComicStrip}
+beni_bdtheque_comicstrip_details:
+    pattern:  /comicstrip/details/{idComicStrip}
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:details }

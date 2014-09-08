@@ -1,0 +1,6 @@
+Beni\BdthequeBundle\Document\Series:
+    fields:
+        id:
+            id:  true
+        title:
+            type: string

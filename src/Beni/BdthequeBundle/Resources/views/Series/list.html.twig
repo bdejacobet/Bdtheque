@@ -1,0 +1,21 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - liste des séries{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="starter-template">
+            {%  for oSeries in aSeries %}
+                <article class="well">
+                    nom : {{ oSeries.title }}<br/>
+                    <a href="{{ path('beni_bdtheque_series_edit',{'idSeries':oSeries.id}) }}">Modifier</a>
+                     -
+                    <a href="{{ path('beni_bdtheque_series_delete',{'idSeries':oSeries.id}) }}">Supprimer</a>
+                </article>
+            {% else %}
+                <p>Pas (encore !) de série</p>
+            {% endfor %}
+            <a href="{{ path('beni_bdtheque_series_create') }}">Ajouter une série</a>
+        </div>
+    </div>
+{% endblock %}
