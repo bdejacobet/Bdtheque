@@ -1,4 +1,5 @@
 Beni\BdthequeBundle\Document\ComicStrip:
+    repositoryClass: Beni\BdthequeBundle\Repository\ComicStripRepository
     fields:
         id:
             id:  true

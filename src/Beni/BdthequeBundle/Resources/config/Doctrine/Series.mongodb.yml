@@ -1,4 +1,5 @@
 Beni\BdthequeBundle\Document\Series:
+    repositoryClass: Beni\BdthequeBundle\Repository\SeriesRepository
     fields:
         id:
             id:  true

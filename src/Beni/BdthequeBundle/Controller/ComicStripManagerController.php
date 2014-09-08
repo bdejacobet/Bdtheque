@@ -1,7 +1,11 @@
 <?php
 
-
 namespace Beni\BdthequeBundle\Controller;
+
+use Beni\BdthequeBundle\Document\ComicStrip;
+use Beni\BdthequeBundle\Form\ComicStripForm;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ComicStripManagerController
@@ -9,12 +13,6 @@ namespace Beni\BdthequeBundle\Controller;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-namespace Beni\BdthequeBundle\Controller;
-
-use Beni\BdthequeBundle\Document\ComicStrip;
-use Beni\BdthequeBundle\Form\ComicStripForm;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class ComicStripManagerController extends Controller
 {
@@ -28,7 +26,7 @@ class ComicStripManagerController extends Controller
     {
         $aComicStrip = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->findAll();
+            ->findAllOrderedByTitle();
 
         return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array(
             'aComicStrip' => $aComicStrip

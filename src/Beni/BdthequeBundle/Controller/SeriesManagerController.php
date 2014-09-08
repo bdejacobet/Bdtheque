@@ -1,7 +1,11 @@
 <?php
 
-
 namespace Beni\BdthequeBundle\Controller;
+
+use Beni\BdthequeBundle\Document\Series;
+use Beni\BdthequeBundle\Form\SeriesForm;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class SeriesManagerController
@@ -9,12 +13,6 @@ namespace Beni\BdthequeBundle\Controller;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-namespace Beni\BdthequeBundle\Controller;
-
-use Beni\BdthequeBundle\Document\Series;
-use Beni\BdthequeBundle\Form\SeriesForm;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class SeriesManagerController extends Controller
 {
@@ -28,7 +26,7 @@ class SeriesManagerController extends Controller
     {
         $aSeries = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:Series')
-            ->findAll();
+            ->findAllOrderedByTitle();
 
         return $this->render('BeniBdthequeBundle:Series:list.html.twig', array(
             'aSeries' => $aSeries
