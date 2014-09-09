@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-
 class SeriesManagerController extends Controller
 {
 
@@ -57,9 +56,9 @@ class SeriesManagerController extends Controller
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
 
-                } catch(Exception $e) {
+                } catch (Exception $e) {
 
-                    $this->get('session')->getFlashBag()->add('error', 'Série n\a pas pu être créée');
+                    $this->get('session')->getFlashBag()->add('danger', 'Série n\a pas pu être créée');
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
                 }
@@ -75,6 +74,7 @@ class SeriesManagerController extends Controller
      * Edition of a series
      *
      * @param $idSeries
+     *
      * @return Response
      */
     public function editAction($idSeries)
@@ -99,9 +99,9 @@ class SeriesManagerController extends Controller
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
 
-                } catch(Exception $e) {
+                } catch (Exception $e) {
 
-                    $this->get('session')->getFlashBag()->add('error', 'Série n\a pas pu être mise à jour');
+                    $this->get('session')->getFlashBag()->add('danger', 'Série n\a pas pu être mise à jour');
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
                 }
@@ -116,6 +116,7 @@ class SeriesManagerController extends Controller
     /** Delete a series
      *
      * @param $idSeries
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @internal param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -129,7 +130,7 @@ class SeriesManagerController extends Controller
             ->find($idSeries);
 
         if ($oSeries == null) {
-            throw $this->createNotFoundException('Series [id='.$idSeries.'] inexistant');
+            throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
         } else {
 
             $em = $this->get('doctrine_mongodb')->getManager();

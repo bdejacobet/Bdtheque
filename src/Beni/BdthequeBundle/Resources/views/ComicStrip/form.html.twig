@@ -1,6 +1,51 @@
 <div class="well">
-    <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.title, 'Titre') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.title) }}
+            {{ form_widget(form.title) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.series, 'Série') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.series) }}
+            {{ form_widget(form.series) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.author, 'Auteur') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.author) }}
+            {{ form_widget(form.author) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.date, 'Date de parution') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.resume, 'Résumé') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.resume) }}
+            {{ form_widget(form.resume) }}
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary"/>
+    {{ form_end(form) }}
 </div>

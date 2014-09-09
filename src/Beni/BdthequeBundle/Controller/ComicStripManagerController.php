@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-
 class ComicStripManagerController extends Controller
 {
 
@@ -57,9 +56,9 @@ class ComicStripManagerController extends Controller
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
 
-                } catch(Exception $e) {
+                } catch (Exception $e) {
 
-                    $this->get('session')->getFlashBag()->add('error', 'BD n\'a pas pu être créée');
+                    $this->get('session')->getFlashBag()->add('danger', 'BD n\'a pas pu être créée');
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_list', array()));
                 }
@@ -75,6 +74,7 @@ class ComicStripManagerController extends Controller
      * Edition of a comic strip
      *
      * @param $idComicStrip
+     *
      * @return Response
      */
     public function EditAction($idComicStrip)
@@ -98,9 +98,9 @@ class ComicStripManagerController extends Controller
 
                     return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
 
-                } catch(Exception $e) {
+                } catch (Exception $e) {
 
-                    $this->get('session')->getFlashBag()->add('error', 'BD n\a pas pu être créée');
+                    $this->get('session')->getFlashBag()->add('danger', 'BD n\a pas pu être créée');
 
                     return $this->redirect($this->generateUrl('beni_bdthequecomicstrip_list', array()));
                 }
@@ -115,6 +115,7 @@ class ComicStripManagerController extends Controller
     /** Delete a comic strip
      *
      * @param $idComicStrip
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @internal param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
@@ -126,7 +127,7 @@ class ComicStripManagerController extends Controller
             ->find($idComicStrip);
 
         if ($oComicStrip == null) {
-            throw $this->createNotFoundException('ComicStrip [id='.$idComicStrip.'] inexistant');
+            throw $this->createNotFoundException('ComicStrip [id=' . $idComicStrip . '] inexistant');
         } else {
 
             $em = $this->get('doctrine_mongodb')->getManager();
@@ -143,6 +144,7 @@ class ComicStripManagerController extends Controller
      * Details of a comic strip
      *
      * @param $idComicStrip
+     *
      * @return Response
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
@@ -153,7 +155,7 @@ class ComicStripManagerController extends Controller
             ->find($idComicStrip);
 
         if (!$oComicStrip) {
-            throw $this->createNotFoundException('No ComicStrip found for id '.$idComicStrip);
+            throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
         }
 
         return $this->render('BeniBdthequeBundle:ComicStrip:details.html.twig', array(

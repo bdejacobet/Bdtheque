@@ -1,28 +1,16 @@
 body {
     padding-top: 50px;
 }
+
 .starter-template {
     padding: 40px 15px;
     text-align: center;
 }
 
-.flash-success {
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    color: #4AB352;
-    background-color: #D3F3D5;
+label {
+    margin-bottom: 0px;
 }
 
-.flash-error {
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    color: #B81623;
-    background-color: #F5C2C2;
+.form_row {
+    margin-bottom: 7px;
 }
-

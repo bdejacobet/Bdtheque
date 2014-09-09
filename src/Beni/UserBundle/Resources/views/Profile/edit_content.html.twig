@@ -1,14 +1,36 @@
-{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
-
 {% block body %}
-<div class="container">
-    <div class="starter-template">
-        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-            {{ form_widget(form) }}
-            <div>
-                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST"
+          class="fos_user_profile_edit">
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                {{ form_label(form.username, 'Login') }}
             </div>
-        </form>
-    </div>
-</div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username) }}
+            </div>
+        </div>
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                {{ form_label(form.email, 'Email') }}
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email) }}
+            </div>
+        </div>
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                {{ form_label(form.current_password, 'Mot de passe') }}
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                {{ form_errors(form.current_password) }}
+                {{ form_widget(form.current_password) }}
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Enregister les modifications" class="btn btn-primary"/>
+        </div>
+        {{ form_end(form) }}
+    </form>
 {% endblock %}
