@@ -1,7 +1,22 @@
 Beni\BdthequeBundle\Document\Series:
+    type: document
     repositoryClass: Beni\BdthequeBundle\Repository\SeriesRepository
     fields:
         id:
             id:  true
         title:
             type: string
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                separator: -
+                style: camel
+                fields:
+                    - title
+    referenceMany:
+        comicStrip:
+            targetDocument: Beni\BdthequeBundle\Document\ComicStrip
+            cascade: all
+

@@ -6,7 +6,7 @@ body {
     text-align: center;
 }
 
-.flash-info {
+.flash-success {
     padding: 10px;
     margin: 10px;
     text-align: center;
@@ -25,3 +25,4 @@ body {
     color: #B81623;
     background-color: #F5C2C2;
 }
+

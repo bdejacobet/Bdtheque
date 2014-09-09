@@ -10,6 +10,7 @@
                 auteur : {{ oComicStrip.author }}<br/>
                 resume : {{ oComicStrip.resume }}<br/>
                 date : {{ oComicStrip.date|date("m/d/Y") }}<br/>
+                série : {{ oComicStrip.series.title }}<br/>
             </div>
             <a href="{{ path('beni_bdtheque_comicstrip_edit', {'idComicStrip':oComicStrip.id}) }}">Modifier</a>
              -

@@ -48,13 +48,21 @@ class ComicStripManagerController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->persist($oComicStrip);
-                $em->flush();
+                try {
+                    $em = $this->get('doctrine_mongodb')->getManager();
+                    $em->persist($oComicStrip);
+                    $em->flush();
 
-                $this->get('session')->getFlashBag()->add('info', 'BD bien créée');
+                    $this->get('session')->getFlashBag()->add('success', 'BD bien créée');
 
-                return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
+                    return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
+
+                } catch(Exception $e) {
+
+                    $this->get('session')->getFlashBag()->add('error', 'BD n\'a pas pu être créée');
+
+                    return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_list', array()));
+                }
             }
         }
 
@@ -81,13 +89,21 @@ class ComicStripManagerController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->persist($oComicStrip);
-                $em->flush();
+                try {
+                    $em = $this->get('doctrine_mongodb')->getManager();
+                    $em->persist($oComicStrip);
+                    $em->flush();
 
-                $this->get('session')->getFlashBag()->add('info', 'BD bien mise à jour');
+                    $this->get('session')->getFlashBag()->add('success', 'BD bien mise à jour');
 
-                return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
+                    return $this->redirect($this->generateUrl('beni_bdtheque_comicstrip_details', array('idComicStrip' => $oComicStrip->getId())));
+
+                } catch(Exception $e) {
+
+                    $this->get('session')->getFlashBag()->add('error', 'BD n\a pas pu être créée');
+
+                    return $this->redirect($this->generateUrl('beni_bdthequecomicstrip_list', array()));
+                }
             }
         }
 
@@ -116,7 +132,7 @@ class ComicStripManagerController extends Controller
             $em = $this->get('doctrine_mongodb')->getManager();
             $em->remove($oComicStrip);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('info', 'BD bien supprimée');
+            $this->get('session')->getFlashBag()->add('success', 'BD bien supprimée');
 
         }
 

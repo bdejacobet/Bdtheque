@@ -3,6 +3,8 @@
 
 namespace Beni\BdthequeBundle\Document;
 
+use Beni\BdthequeBundle\Document\ComicStrip;
+
 /**
  * Class Series
  *
@@ -11,9 +13,31 @@ namespace Beni\BdthequeBundle\Document;
  */
 class Series
 {
+
+    /**
+     * @var string
+     */
     protected $id;
 
+    /**
+     * @var string
+     */
     protected $title;
+
+    /**
+     * @var string
+     */
+    protected $slug;
+
+    /**
+     * @var ComicStrip
+     */
+    protected $comicStrip = array();
+
+    public function __construct()
+    {
+        $this->comicStrip = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -48,4 +72,55 @@ class Series
         return $this;
     }
 
+    /**
+     * Get slug
+     *
+     * @return string $slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Add comicStrip
+     *
+     * @param ComicStrip $comicStrip
+     */
+    public function addComicStrip(ComicStrip $comicStrip)
+    {
+        $this->comicStrip[] = $comicStrip;
+    }
+
+    /**
+     * Remove comicStrip
+     *
+     * @param ComicStrip $comicStrip
+     */
+    public function removeComicStrip(ComicStrip $comicStrip)
+    {
+        $this->comicStrip->removeElement($comicStrip);
+    }
+
+    /**
+     * Get comicStrip
+     *
+     * @return Doctrine\Common\Collections\Collection $comicStrip
+     */
+    public function getComicStrip()
+    {
+        return $this->comicStrip;
+    }
 }

@@ -3,6 +3,8 @@
 
 namespace Beni\BdthequeBundle\Document;
 
+use Beni\BdthequeBundle\Document\Series;
+
 /**
  * Class ComicStrip
  *
@@ -11,16 +13,40 @@ namespace Beni\BdthequeBundle\Document;
  */
 class ComicStrip
 {
+
+    /**
+     * @var string
+     */
     protected $id;
 
+    /**
+     * @var string
+     */
     protected $title;
 
+    /**
+     * @var string
+     */
     protected $author;
 
+    /**
+     * @var string
+     */
     protected $resume;
 
+    /**
+     * @var date
+     */
     protected $date;
 
+    /**
+     * @var string
+     */
+    protected $slug;
+
+    /**
+     * @var Series
+     */
     protected $series;
 
     /**
@@ -124,6 +150,41 @@ class ComicStrip
     }
 
     /**
+     * Get slug
+     *
+     * @return string $slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+
+    /**
+     * Set series
+     *
+     * @param Series $series
+     * @return self
+     */
+    public function setSeries(Series $series)
+    {
+        $this->series = $series;
+        return $this;
+    }
+
+    /**
      * Get series
      *
      * @return Series $series
@@ -132,17 +193,4 @@ class ComicStrip
     {
         return $this->series;
     }
-
-    /**
-     * Set series
-     *
-     * @param Series $series
-     * @return self
-     */
-    public function setSeries($series)
-    {
-        $this->series = $series;
-        return $this;
-    }
-
 }

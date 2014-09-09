@@ -48,13 +48,21 @@ class SeriesManagerController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->persist($oSeries);
-                $em->flush();
+                try {
+                    $em = $this->get('doctrine_mongodb')->getManager();
+                    $em->persist($oSeries);
+                    $em->flush();
 
-                $this->get('session')->getFlashBag()->add('info', 'Série bien créée');
+                    $this->get('session')->getFlashBag()->add('success', 'Série bien créée');
 
-                return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+
+                } catch(Exception $e) {
+
+                    $this->get('session')->getFlashBag()->add('error', 'Série n\a pas pu être créée');
+
+                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                }
             }
         }
 
@@ -82,13 +90,21 @@ class SeriesManagerController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->persist($oSeries);
-                $em->flush();
+                try {
+                    $em = $this->get('doctrine_mongodb')->getManager();
+                    $em->persist($oSeries);
+                    $em->flush();
 
-                $this->get('session')->getFlashBag()->add('info', 'Série bien mise à jour');
+                    $this->get('session')->getFlashBag()->add('success', 'Série bien mise à jour');
 
-                return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+
+                } catch(Exception $e) {
+
+                    $this->get('session')->getFlashBag()->add('error', 'Série n\a pas pu être mise à jour');
+
+                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                }
             }
         }
 
@@ -119,7 +135,7 @@ class SeriesManagerController extends Controller
             $em = $this->get('doctrine_mongodb')->getManager();
             $em->remove($oSeries);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('info', 'Série bien supprimée');
+            $this->get('session')->getFlashBag()->add('success', 'Série bien supprimée');
 
         }
 
