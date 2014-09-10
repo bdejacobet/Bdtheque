@@ -1,5 +1,9 @@
-beni_bdtheque_home:
+beni_bdtheque:
     pattern: /
+    defaults: { _controller: BeniBdthequeBundle:Home:home }
+
+beni_bdtheque_home:
+    pattern: /home
     defaults: { _controller: BeniBdthequeBundle:Home:home }
 
 beni_bdtheque_series_list:

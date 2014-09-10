@@ -24,10 +24,12 @@ security:
             form_login:
                 login_path:  /user/login
                 check_path:  /user/login_check
+                default_target_path: /home
 
     access_control:
         # Homepage
         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # User
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
