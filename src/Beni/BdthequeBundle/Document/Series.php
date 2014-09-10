@@ -4,6 +4,7 @@
 namespace Beni\BdthequeBundle\Document;
 
 use Beni\BdthequeBundle\Document\ComicStrip;
+use Beni\UserBundle\Document\User;
 
 /**
  * Class Series
@@ -34,6 +35,11 @@ class Series
      */
     protected $comicStrip = array();
 
+    /**
+     * @var User
+     */
+    protected $user;
+
     public function __construct()
     {
         $this->comicStrip = new \Doctrine\Common\Collections\ArrayCollection();
@@ -63,12 +69,14 @@ class Series
      * Set title
      *
      * @param $title
+     *
      * @internal param string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -86,11 +94,13 @@ class Series
      * Set slug
      *
      * @param string $slug
+     *
      * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -122,5 +132,29 @@ class Series
     public function getComicStrip()
     {
         return $this->comicStrip;
+    }
+
+    /**
+     * Set user
+     *
+     * @param $user *
+     *
+     * @return self
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User $user
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

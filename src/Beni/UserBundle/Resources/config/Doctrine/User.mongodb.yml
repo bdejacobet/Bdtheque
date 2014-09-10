@@ -1,4 +1,9 @@
 Beni\UserBundle\Document\User:
+    type: document
     fields:
         id:
             id:  true
+    referenceMany:
+        series:
+            targetDocument: Beni\BdthequeBundle\Document\Series
+            cascade: all

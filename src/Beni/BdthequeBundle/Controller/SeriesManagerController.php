@@ -4,8 +4,10 @@ namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\Series;
 use Beni\BdthequeBundle\Form\SeriesForm;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class SeriesManagerController
@@ -23,9 +25,11 @@ class SeriesManagerController extends Controller
      */
     public function ListAction()
     {
+        $user = $this->_getLoggedUser();
+
         $aSeries = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:Series')
-            ->findAllOrderedByTitle();
+            ->findAllByUserOrderedByTitle($user);
 
         return $this->render('BeniBdthequeBundle:Series:list.html.twig', array(
             'aSeries' => $aSeries
@@ -35,11 +39,16 @@ class SeriesManagerController extends Controller
     /**
      * Creation of a series
      *
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @return Response
      */
     public function createAction()
     {
         $oSeries = new Series;
+
+        $user = $this->_getLoggedUser();
+        $oSeries->setUser($user);
+
         $form = $this->createForm(new Seriesform, $oSeries);
 
         $request = $this->get('request');
@@ -75,35 +84,42 @@ class SeriesManagerController extends Controller
      *
      * @param $idSeries
      *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return Response
      */
     public function editAction($idSeries)
     {
+        $user = $this->_getLoggedUser();
 
         $oSeries = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:Series')
-            ->find($idSeries);
-        $form = $this->createForm(new Seriesform, $oSeries);
+            ->findByIdAndUser($idSeries, $user);
 
-        $request = $this->get('request');
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+        if ($oSeries == null) {
+            throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
+        } else {
+            $form = $this->createForm(new Seriesform, $oSeries);
 
-            if ($form->isValid()) {
-                try {
-                    $em = $this->get('doctrine_mongodb')->getManager();
-                    $em->persist($oSeries);
-                    $em->flush();
+            $request = $this->get('request');
+            if ($request->getMethod() == 'POST') {
+                $form->bind($request);
 
-                    $this->get('session')->getFlashBag()->add('success', 'Série bien mise à jour');
+                if ($form->isValid()) {
+                    try {
+                        $em = $this->get('doctrine_mongodb')->getManager();
+                        $em->persist($oSeries);
+                        $em->flush();
 
-                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                        $this->get('session')->getFlashBag()->add('success', 'Série bien mise à jour');
 
-                } catch (Exception $e) {
+                        return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
 
-                    $this->get('session')->getFlashBag()->add('danger', 'Série n\a pas pu être mise à jour');
+                    } catch (Exception $e) {
 
-                    return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                        $this->get('session')->getFlashBag()->add('danger', 'Série n\a pas pu être mise à jour');
+
+                        return $this->redirect($this->generateUrl('beni_bdtheque_series_list', array()));
+                    }
                 }
             }
         }
@@ -141,5 +157,21 @@ class SeriesManagerController extends Controller
         }
 
         return $this->redirect($this->generateUrl('beni_bdtheque_series_list'));
+    }
+
+    /**
+     * get user logged
+     *
+     * @return UserInterface $user
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
+    private function _getLoggedUser()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
+        }
+
+        return $user;
     }
 }
