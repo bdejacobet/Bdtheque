@@ -136,8 +136,6 @@ class SeriesManagerController extends Controller
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @internal param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     *
-     * @TODO : test pas de comicStrop associé à cette série avant delete
      */
     public function deleteAction($idSeries)
     {
@@ -145,14 +143,21 @@ class SeriesManagerController extends Controller
             ->getRepository('BeniBdthequeBundle:Series')
             ->find($idSeries);
 
+
         if ($oSeries == null) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
         } else {
 
-            $em = $this->get('doctrine_mongodb')->getManager();
-            $em->remove($oSeries);
-            $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'Série bien supprimée');
+            If ($oSeries->getComicStrip()->isEmpty() !== true) {
+                $this->get('session')->getFlashBag()->add('danger', 'Série ayant encore des BDs associées');
+
+            } else {
+
+                $em = $this->get('doctrine_mongodb')->getManager();
+                $em->remove($oSeries);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('success', 'Série bien supprimée');
+            }
 
         }
 
