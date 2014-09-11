@@ -24,4 +24,5 @@ Beni\BdthequeBundle\Document\Series:
         user:
             targetDocument: Beni\UserBundle\Document\User
             cascade: all
+            inversedBy: series
 

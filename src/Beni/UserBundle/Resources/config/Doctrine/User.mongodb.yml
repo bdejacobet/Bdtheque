@@ -7,3 +7,4 @@ Beni\UserBundle\Document\User:
         series:
             targetDocument: Beni\BdthequeBundle\Document\Series
             cascade: all
+            mappedBy: user
