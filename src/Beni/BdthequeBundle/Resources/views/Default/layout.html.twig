@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
     {% endstylesheets %}
 
+    {% image '@BeniBdthequeBundle/Resources/public/images/icon.png' output='/images/icon.png' %}
+    <link rel="shortcut icon" href="{{ asset_url }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset_url }}" type="image/x-icon"/>
+    {% endimage %}
+
 </head>
 <body>
 

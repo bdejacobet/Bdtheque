@@ -3,5 +3,7 @@
 {% block title %}{{ parent() }} - Home{% endblock %}
 
 {% block body %}
-    <h1 class="txt-white">Ma Bdtheque!!</h1>
+    {% image '@BeniBdthequeBundle/Resources/public/images/bdtheque.png' output='/images/bdtheque.png' %}
+    <img src="{{ asset_url }}" alt="BDthèque" class="img-responsive"/>
+    {% endimage %}
 {% endblock %}
