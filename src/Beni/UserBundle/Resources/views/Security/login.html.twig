@@ -3,28 +3,47 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-<div class="container">
-    <div class="starter-template">
-        {% block fos_user_content %}
-        {% if error %}
-            <div>{{ error|trans }}</div>
-        {% endif %}
+    <div class="container">
+        <div class="starter-template">
+            {% block fos_user_content %}
+                {% if error %}
+                    <div>{{ error|trans }}</div>
+                {% endif %}
 
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
-            <label for="username">{{ 'security.login.username'|trans }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    <div class="form_row row">
+                        <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                            <label for="username">Login</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <input type="text" id="username" name="_username" value="{{ last_username }}"
+                                   required="required"/>
+                        </div>
+                    </div>
 
-            <label for="password">{{ 'security.login.password'|trans }}</label>
-            <input type="password" id="password" name="_password" required="required" />
+                    <div class="form_row row">
+                        <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                            <label for="password">Mot de passe</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <input type="password" id="password" name="_password" required="required"/>
+                        </div>
+                    </div>
 
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    <div class="form_row row">
+                        <div class="col-xs-12 col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-3 col-lg-3 col-lg-offset-3">
+                            <label for="remember_me">Se souvenir de moi</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                        </div>
+                    </div>
 
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-        </form>
-        {% endblock fos_user_content %}
+                    <input type="submit" id="_submit" name="_submit" value="Connexion" class="btn btn-primary"/>
+                </form>
+            {% endblock fos_user_content %}
+        </div>
     </div>
-</div>
 {% endblock %}
