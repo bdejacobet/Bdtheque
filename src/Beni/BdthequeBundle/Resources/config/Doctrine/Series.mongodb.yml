@@ -19,6 +19,7 @@ Beni\BdthequeBundle\Document\Series:
         comicStrip:
             targetDocument: Beni\BdthequeBundle\Document\ComicStrip
             cascade: all
+            mappedBy: series
     referenceOne:
         user:
             targetDocument: Beni\UserBundle\Document\User

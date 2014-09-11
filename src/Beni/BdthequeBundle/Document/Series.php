@@ -127,7 +127,7 @@ class Series
     /**
      * Get comicStrip
      *
-     * @return Doctrine\Common\Collections\Collection $comicStrip
+     * @return \Doctrine\Common\Collections\ArrayCollection $comicStrip
      */
     public function getComicStrip()
     {

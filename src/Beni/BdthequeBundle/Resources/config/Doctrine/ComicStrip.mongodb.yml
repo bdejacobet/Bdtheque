@@ -25,3 +25,4 @@ Beni\BdthequeBundle\Document\ComicStrip:
         series:
             targetDocument: Beni\BdthequeBundle\Document\Series
             cascade: all
+            inversedBy: comicStrip
