@@ -28,7 +28,7 @@ class User extends FosUser
     public function __construct()
     {
         parent::__construct();
-        $this->$series = new ArrayCollection();
+        $this->series = new ArrayCollection();
     }
 
     /**

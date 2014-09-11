@@ -3,12 +3,7 @@
 {% block title %}{{ parent() }} - ajouter une bd{% endblock %}
 
 {% block body %}
-    <h2>Ajouter une BD</h2>
+    <h2 class="txt-white">Ajouter une BD</h2>
     {% include "BeniBdthequeBundle:ComicStrip:form.html.twig" %}
-    <p>
-        <a href="{{ path('beni_bdtheque_comicstrip_list') }}" class="btn">
-            <i class="icon-chevron-left"></i>
-            Retour
-        </a>
-    </p>
+    <a href="{{ path('beni_bdtheque_comicstrip_list') }}" class="btn btn-primary">Retour liste</a>
 {% endblock %}

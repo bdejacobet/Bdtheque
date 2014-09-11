@@ -1,5 +1,6 @@
 body {
     padding-top: 50px;
+    background-color: #000000;
 }
 
 .starter-template {
@@ -14,3 +15,16 @@ label {
 .form_row {
     margin-bottom: 7px;
 }
+
+.txt-white {
+    color: #ffffff;
+}
+
+.txt-black {
+    color: #000000;
+}
+
+.txt-bold {
+    font-weight: bold;
+}
+

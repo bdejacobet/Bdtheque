@@ -3,16 +3,19 @@
 {% block title %}{{ parent() }} - liste des bd{% endblock %}
 
 {% block body %}
+    <h2 class="txt-white">Ma liste de BDs</h2>
     {% for oComicStrip in aComicStrip %}
         <article class="well">
-            nom : {{ oComicStrip.title }}<br/>
-            resumé : {{ oComicStrip.resume }}<br/>
-            auteur : {{ oComicStrip.author }}<br/>
-            date : {{ oComicStrip.date|date("m/d/Y") }}<br/>
-            <a href="{{ path('beni_bdtheque_comicstrip_details',{'idComicStrip':oComicStrip.id}) }}">Détails</a>
+            <h3 class="txt-black">{{ oComicStrip.title }}</h3>
+
+            <p>({{ oComicStrip.author }})</p>
+            <a href="{{ path('beni_bdtheque_comicstrip_details',{'idComicStrip':oComicStrip.id}) }}"
+               class="btn btn-primary">Détails</a>
+            <a href="{{ path('beni_bdtheque_comicstrip_edit', {'idComicStrip':oComicStrip.id}) }}"
+               class="btn btn-primary">Modifier</a>
         </article>
     {% else %}
         <p>Pas (encore !) de BD</p>
     {% endfor %}
-    <a href="{{ path('beni_bdtheque_comicstrip_create') }}">Ajouter une BD</a>
+    <a href="{{ path('beni_bdtheque_comicstrip_create') }}" class="btn btn-primary">Ajouter une BD</a>
 {% endblock %}
