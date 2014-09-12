@@ -196,12 +196,55 @@ class ComicStripManagerController extends Controller
      */
     public function associateToUserAction($idComicStrip)
     {
+
+        $oUser = $this->_getLoggedUser();
+
         $oComicStrip = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:ComicStrip')
             ->find($idComicStrip);
 
         if (!$oComicStrip) {
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
+        } else {
+
+            $em = $this->get('doctrine_mongodb')->getManager();
+            $oComicStrip->addUser($oUser);
+            $em->persist($oComicStrip);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success', '\'' . $oComicStrip->getTitle() . '\' a été ajouté à votre collection');
+        }
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:details.html.twig', array(
+            'oComicStrip' => $oComicStrip
+        ));
+    }
+
+    /**
+     * Dissociate a comic strip to a user
+     *
+     * @param $idComicStrip
+     *
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function dissociateToUserAction($idComicStrip)
+    {
+
+        $oUser = $this->_getLoggedUser();
+
+        $oComicStrip = $this->get('doctrine_mongodb')
+            ->getRepository('BeniBdthequeBundle:ComicStrip')
+            ->find($idComicStrip);
+
+        if (!$oComicStrip) {
+            throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
+        } else {
+
+            $em = $this->get('doctrine_mongodb')->getManager();
+            $oComicStrip->removeUser($oUser);
+            $em->persist($oComicStrip);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success', '\'' . $oComicStrip->getTitle() . '\' a été supprimé de votre collection');
         }
 
         return $this->render('BeniBdthequeBundle:ComicStrip:details.html.twig', array(
@@ -217,11 +260,11 @@ class ComicStripManagerController extends Controller
      */
     private function _getLoggedUser()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
+        $oUser = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($oUser) || !$oUser instanceof UserInterface) {
             throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
         }
 
-        return $user;
+        return $oUser;
     }
 }

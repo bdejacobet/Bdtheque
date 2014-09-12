@@ -45,3 +45,11 @@ beni_bdtheque_comicstrip_delete:
 beni_bdtheque_comicstrip_details:
     pattern:  /comicstrip/details/{idComicStrip}
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:details }
+
+beni_bdtheque_comicstrip_associate_user:
+    pattern:  /comicstrip/associate/{idComicStrip}
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:associateToUser }
+
+beni_bdtheque_comicstrip_dissociate_user:
+    pattern:  /comicstrip/dissociate/{idComicStrip}
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:dissociateToUser }
