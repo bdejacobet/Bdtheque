@@ -25,4 +25,9 @@ Beni\BdthequeBundle\Document\ComicStrip:
         series:
             targetDocument: Beni\BdthequeBundle\Document\Series
             cascade: all
-            inversedBy: comicStrip
+            inversedBy: comicStrips
+    referenceMany:
+        users:
+            targetDocument: Beni\UserBundle\Document\User
+            cascade: all
+            inversedBy: comicStrips

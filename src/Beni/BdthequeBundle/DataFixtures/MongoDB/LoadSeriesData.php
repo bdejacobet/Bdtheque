@@ -22,17 +22,16 @@ class LoadSeriesData extends AbstractFixture implements OrderedFixtureInterface
     {
         $oSeries_1 = new Series();
         $oSeries_1->setTitle('Spirou et Fantasio');
-        $oSeries_1->setUser($this->getReference('user'));
         $manager->persist($oSeries_1);
+        $this->addReference('series_1', $oSeries_1);
 
         $oSeries_2 = new Series();
         $oSeries_2->setTitle('Gaston Lagaffe');
-        $oSeries_2->setUser($this->getReference('user'));
         $manager->persist($oSeries_2);
+        $this->addReference('series_2', $oSeries_2);
 
         $manager->flush();
 
-        $this->addReference('series', $oSeries_1);
     }
 
     /**

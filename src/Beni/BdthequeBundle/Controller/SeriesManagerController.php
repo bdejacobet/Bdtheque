@@ -4,10 +4,8 @@ namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\Series;
 use Beni\BdthequeBundle\Form\SeriesForm;
-use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class SeriesManagerController
@@ -25,11 +23,10 @@ class SeriesManagerController extends Controller
      */
     public function ListAction()
     {
-        $user = $this->_getLoggedUser();
 
         $aSeries = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:Series')
-            ->findAllByUserOrderedByTitle($user);
+            ->findAllOrderedByTitle();
 
         return $this->render('BeniBdthequeBundle:Series:list.html.twig', array(
             'aSeries' => $aSeries
@@ -45,9 +42,6 @@ class SeriesManagerController extends Controller
     public function createAction()
     {
         $oSeries = new Series;
-
-        $user = $this->_getLoggedUser();
-        $oSeries->setUser($user);
 
         $form = $this->createForm(new Seriesform, $oSeries);
 
@@ -89,11 +83,10 @@ class SeriesManagerController extends Controller
      */
     public function editAction($idSeries)
     {
-        $user = $this->_getLoggedUser();
 
         $oSeries = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:Series')
-            ->findByIdAndUser($idSeries, $user);
+            ->find($idSeries);
 
         if ($oSeries == null) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
@@ -162,21 +155,5 @@ class SeriesManagerController extends Controller
         }
 
         return $this->redirect($this->generateUrl('beni_bdtheque_series_list'));
-    }
-
-    /**
-     * get user logged
-     *
-     * @return UserInterface $user
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
-     */
-    private function _getLoggedUser()
-    {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
-        }
-
-        return $user;
     }
 }

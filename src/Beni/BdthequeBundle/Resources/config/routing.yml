@@ -26,6 +26,10 @@ beni_bdtheque_comicstrip_list:
     pattern:  /comicstrip/list
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:list }
 
+beni_bdtheque_comicstrip_mylist:
+    pattern:  /comicstrip/mylist
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:myList }
+
 beni_bdtheque_comicstrip_create:
     pattern:  /comicstrip/create
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:create }

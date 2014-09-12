@@ -4,7 +4,7 @@ namespace Beni\UserBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as FosUser;
-use Beni\BdthequeBundle\Document\Series;
+use Beni\BdthequeBundle\Document\ComicStrip;
 
 /**
  * Class User
@@ -21,14 +21,15 @@ class User extends FosUser
     protected $id;
 
     /**
-     * @var Series
+     * @var array
      */
-    protected $series = array();
+    protected $comicStrips = array();
+
 
     public function __construct()
     {
         parent::__construct();
-        $this->series = new ArrayCollection();
+        $this->comicStrips = new ArrayCollection();
     }
 
     /**
@@ -41,33 +42,34 @@ class User extends FosUser
         return $this->id;
     }
 
+
     /**
-     * Add series
+     * Add comicStrip
      *
-     * @param Series $series
+     * @param ComicStrip $comicStrip
      */
-    public function addSeries(Series $series)
+    public function addComicStrip(ComicStrip $comicStrip)
     {
-        $this->series[] = $series;
+        $this->comicStrips[] = $comicStrip;
     }
 
     /**
-     * Remove series
+     * Remove comicStrip
      *
-     * @param Series $series
+     * @param ComicStrip $comicStrip
      */
-    public function removeSeries(Series $series)
+    public function removeComicStrip(ComicStrip $comicStrip)
     {
-        $this->series->removeElement($series);
+        $this->comicStrips->removeElement($comicStrip);
     }
 
     /**
-     * Get series
+     * Get comicStrips
      *
-     * @return Doctrine\Common\Collections\Collection $series
+     * @return Doctrine\Common\Collections\Collection $comicStrips
      */
-    public function getSeries()
+    public function getComicStrips()
     {
-        return $this->series;
+        return $this->comicStrips;
     }
 }

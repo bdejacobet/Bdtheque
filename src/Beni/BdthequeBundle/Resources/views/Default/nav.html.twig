@@ -17,10 +17,13 @@
 
             <ul class="nav navbar-nav">
                 <li {% if app.request.attributes.get('_route') == 'beni_bdtheque_series_list' %}class="active"{% endif %}>
-                    <a href="{{ path('beni_bdtheque_series_list') }}">Ma liste de séries</a>
+                    <a href="{{ path('beni_bdtheque_series_list') }}">Toutes les séries</a>
                 </li>
                 <li {% if app.request.attributes.get('_route') == 'beni_bdtheque_comicstrip_list' %}class="active"{% endif %}>
-                    <a href="{{ path('beni_bdtheque_comicstrip_list') }}">Ma liste de BDs</a>
+                    <a href="{{ path('beni_bdtheque_comicstrip_list') }}">Toutes les BDs</a>
+                </li>
+                <li {% if app.request.attributes.get('_route') == 'beni_bdtheque_comicstrip_mylist' %}class="active"{% endif %}>
+                    <a href="{{ path('beni_bdtheque_comicstrip_mylist') }}">Ma liste de BDs</a>
                 </li>
             </ul>
             {% if app.user %}

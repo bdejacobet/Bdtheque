@@ -4,7 +4,7 @@ Beni\UserBundle\Document\User:
         id:
             id:  true
     referenceMany:
-        series:
-            targetDocument: Beni\BdthequeBundle\Document\Series
+        comicStrips:
+            targetDocument: Beni\BdthequeBundle\Document\ComicStrip
             cascade: all
-            mappedBy: user
+            mappedBy: users

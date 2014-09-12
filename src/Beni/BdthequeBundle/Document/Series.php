@@ -3,8 +3,8 @@
 
 namespace Beni\BdthequeBundle\Document;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Beni\BdthequeBundle\Document\ComicStrip;
-use Beni\UserBundle\Document\User;
 
 /**
  * Class Series
@@ -31,18 +31,16 @@ class Series
     protected $slug;
 
     /**
-     * @var ComicStrip
+     * @var array
      */
-    protected $comicStrip = array();
+    protected $comicStrips = array();
 
     /**
-     * @var User
+     * Construct
      */
-    protected $user;
-
     public function __construct()
     {
-        $this->comicStrip = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comicStrips = new ArrayCollection();
     }
 
     /**
@@ -111,7 +109,7 @@ class Series
      */
     public function addComicStrip(ComicStrip $comicStrip)
     {
-        $this->comicStrip[] = $comicStrip;
+        $this->comicStrips[] = $comicStrip;
     }
 
     /**
@@ -121,7 +119,7 @@ class Series
      */
     public function removeComicStrip(ComicStrip $comicStrip)
     {
-        $this->comicStrip->removeElement($comicStrip);
+        $this->comicStrips->removeElement($comicStrip);
     }
 
     /**
@@ -129,32 +127,9 @@ class Series
      *
      * @return \Doctrine\Common\Collections\ArrayCollection $comicStrip
      */
-    public function getComicStrip()
+    public function getComicStrips()
     {
-        return $this->comicStrip;
+        return $this->comicStrips;
     }
 
-    /**
-     * Set user
-     *
-     * @param $user *
-     *
-     * @return self
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User $user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

@@ -4,6 +4,8 @@
 namespace Beni\BdthequeBundle\Document;
 
 use Beni\BdthequeBundle\Document\Series;
+use Beni\UserBundle\Document\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class ComicStrip
@@ -50,6 +52,19 @@ class ComicStrip
     protected $series;
 
     /**
+     * @var arrayCollection
+     */
+    protected $users = array();
+
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int $id
@@ -73,12 +88,14 @@ class ComicStrip
      * Set title
      *
      * @param $title
+     *
      * @internal param string $title
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -96,12 +113,14 @@ class ComicStrip
      * Set resume
      *
      * @param $resume
+     *
      * @internal param string $resume
      * @return self
      */
     public function setResume($resume)
     {
         $this->resume = $resume;
+
         return $this;
     }
 
@@ -119,11 +138,13 @@ class ComicStrip
      * Set author
      *
      * @param string $author
+     *
      * @return self
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -141,11 +162,13 @@ class ComicStrip
      * Set date
      *
      * @param date $date
+     *
      * @return self
      */
     public function setDate($date)
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -163,24 +186,27 @@ class ComicStrip
      * Set slug
      *
      * @param string $slug
+     *
      * @return self
      */
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
         return $this;
     }
-
 
     /**
      * Set series
      *
      * @param Series $series
+     *
      * @return self
      */
     public function setSeries(Series $series)
     {
         $this->series = $series;
+
         return $this;
     }
 
@@ -192,5 +218,35 @@ class ComicStrip
     public function getSeries()
     {
         return $this->series;
+    }
+
+    /**
+     * Add user
+     *
+     * @param User $user
+     */
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param User $user
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection $users
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

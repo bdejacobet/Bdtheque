@@ -3,6 +3,7 @@
 namespace Beni\BdthequeBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Class ComicStripRepository
@@ -13,6 +14,11 @@ use Doctrine\ODM\MongoDB\DocumentRepository;
 
 class ComicStripRepository extends DocumentRepository
 {
+    /**
+     * Find all comic strip
+     *
+     * @return mixed|object
+     */
     public function findAllOrderedByTitle()
     {
         return $this->createQueryBuilder()
@@ -20,4 +26,21 @@ class ComicStripRepository extends DocumentRepository
             ->getQuery()
             ->execute();
     }
+
+    /**
+     * Find all comic strip of user
+     *
+     * @param UserInterface $user
+     *
+     * @return mixed|object
+     */
+    public function findAllByUserOrderedByTitle(UserInterface $user)
+    {
+        return $this->createQueryBuilder()
+            ->field('users')->references($user)
+            ->sort('title', 'ASC')
+            ->getQuery()
+            ->execute();
+    }
+
 }

@@ -16,13 +16,8 @@ Beni\BdthequeBundle\Document\Series:
                 fields:
                     - title
     referenceMany:
-        comicStrip:
+        comicStrips:
             targetDocument: Beni\BdthequeBundle\Document\ComicStrip
             cascade: all
             mappedBy: series
-    referenceOne:
-        user:
-            targetDocument: Beni\UserBundle\Document\User
-            cascade: all
-            inversedBy: series
 

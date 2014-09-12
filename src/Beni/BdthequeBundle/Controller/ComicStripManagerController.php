@@ -4,8 +4,10 @@ namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\ComicStrip;
 use Beni\BdthequeBundle\Form\ComicStripForm;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Class ComicStripManagerController
@@ -33,13 +35,33 @@ class ComicStripManagerController extends Controller
     }
 
     /**
+     * My list of comic strip
+     *
+     * @return Response
+     */
+    public function MyListAction()
+    {
+        $user = $this->_getLoggedUser();
+
+        $aComicStrip = $this->get('doctrine_mongodb')
+            ->getRepository('BeniBdthequeBundle:ComicStrip')
+            ->findAllByUserOrderedByTitle($user);
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array(
+            'aComicStrip' => $aComicStrip
+        ));
+    }
+
+    /**
      * Creation of a comic strip
      *
      * @return Response
      */
     public function createAction()
     {
+
         $oComicStrip = new ComicStrip;
+
         $form = $this->createForm(new ComicStripform, $oComicStrip);
 
         $request = $this->get('request');
@@ -79,6 +101,7 @@ class ComicStripManagerController extends Controller
      */
     public function EditAction($idComicStrip)
     {
+
         $oComicStrip = $this->get('doctrine_mongodb')
             ->getRepository('BeniBdthequeBundle:ComicStrip')
             ->find($idComicStrip);
@@ -161,5 +184,44 @@ class ComicStripManagerController extends Controller
         return $this->render('BeniBdthequeBundle:ComicStrip:details.html.twig', array(
             'oComicStrip' => $oComicStrip
         ));
+    }
+
+    /**
+     * Associate a comic strip to a user
+     *
+     * @param $idComicStrip
+     *
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function associateToUserAction($idComicStrip)
+    {
+        $oComicStrip = $this->get('doctrine_mongodb')
+            ->getRepository('BeniBdthequeBundle:ComicStrip')
+            ->find($idComicStrip);
+
+        if (!$oComicStrip) {
+            throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
+        }
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:details.html.twig', array(
+            'oComicStrip' => $oComicStrip
+        ));
+    }
+
+    /**
+     * get user logged
+     *
+     * @return UserInterface $user
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
+    private function _getLoggedUser()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
+        }
+
+        return $user;
     }
 }
