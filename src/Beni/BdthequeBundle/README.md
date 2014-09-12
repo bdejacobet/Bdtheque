@@ -1,10 +1,8 @@
 Bdtheque
 ========================
 
-1) Installation
-----------------------------------
-
 utilisation de mongodb :
+----------------------------------
 
 *   installer mongodb sur le serveur
 *   ajouter les bundles suivant dans votre composer.json
@@ -30,6 +28,7 @@ utilisation de mongodb :
 					auto_mapping: true
 
 utilisation de Assetic :
+----------------------------------
 
 *   ajouter ce bundle dans la liste des bundles d'assetic dans votre app/config/config.yml
 
@@ -39,8 +38,24 @@ utilisation de Assetic :
             bundles:
                 - "BeniBdthequeBundle"
 
-ajout des routes dans votre app/config/routing.yml
+*   ajout des routes dans votre app/config/routing.yml
 
 	beni_bdtheque:
         resource: "@BeniBdthequeBundle/Resources/config/routing.yml"
         prefix:   /
+
+chargement des fixtures :
+----------------------------------
+
+*   ajouter le bundle suivant dans votre composer.json
+
+		"doctrine/doctrine-fixtures-bundle": "dev-master"
+
+*   suppression des anciennes données et recréation de la base de données vide
+
+		$ php app/console doctrine:mongodb:schema:drop
+		$ php app/console doctrine:mongodb:schema:create
+
+*   lancer le chargement des fixtures
+
+		$ php app/console doctrine:mongodb:fixtures:load
