@@ -3,13 +3,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-<div class="container">
-    <div class="starter-template">
+    <h2 class="txt-white">Mot de passe oublié</h2>
+    <div class="well">
         {% block fos_user_content %}
-        <p>
-        {{ 'resetting.check_email'|trans({'%email%': email}) }}
-        </p>
+            <p>Un email a été envoyé à {{ email }}. Il contient un lien sur lequel vous devez cliquer pour changer votre
+                mot de passe.</p>
         {% endblock %}
     </div>
-</div>
 {% endblock %}

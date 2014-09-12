@@ -1,13 +1,9 @@
 {% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
 
 {% block body %}
-    <div class="container">
-        <div class="starter-template">
-            <div class="fos_user_user_show">
-                <p>Login: {{ user.username }}</p>
+    <div class="fos_user_user_show">
+        <p>Login: {{ user.username }}</p>
 
-                <p>Email: {{ user.email }}</p>
-            </div>
-        </div>
+        <p>Email: {{ user.email }}</p>
     </div>
 {% endblock %}

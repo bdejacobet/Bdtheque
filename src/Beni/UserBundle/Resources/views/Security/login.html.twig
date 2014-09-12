@@ -3,12 +3,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
+    {% if error %}
+        <div class="alert alert-danger">{{ error|trans }}</div>
+    {% endif %}
     <h2 class="txt-white">Se loguer</h2>
     <div class="well">
         {% block fos_user_content %}
-            {% if error %}
-                <div>{{ error|trans }}</div>
-            {% endif %}
 
             <form action="{{ path("fos_user_security_check") }}" method="post">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
@@ -42,6 +42,7 @@
                 </div>
 
                 <input type="submit" id="_submit" name="_submit" value="Connexion" class="btn btn-primary"/>
+                <a href="{{ path('fos_user_resetting_request') }}" class="btn btn-primary">Mot de passe oublié ?</a>
             </form>
         {% endblock fos_user_content %}
     </div>
