@@ -4,14 +4,22 @@ Beni\BdthequeBundle\Document\ComicStrip:
     fields:
         id:
             id:  true
+        ISBN:
+            type: string
         title:
+            type: string
+        editor:
             type: string
         author:
             type: string
         resume:
             type: string
-        date:
+        legalDeposit:
             type: date
+        tome:
+            type: string
+        category:
+            type: string
         slug:
             type: string
             length: 128

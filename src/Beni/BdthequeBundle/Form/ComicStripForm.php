@@ -20,8 +20,11 @@ class ComicStripForm  extends AbstractType
         $builder
             ->add('title', 'text')
             ->add('author', 'text')
+            ->add('ISBN', 'text')
+            ->add('editor', 'text')
+            ->add('category', 'text')
             ->add('resume', 'textarea', array('required' => false))
-            ->add('date', 'date', array('required' => false))
+            ->add('legal_deposit', 'date', array('required' => false))
             ->add('series', 'document', array(
                 'class'    => 'Beni\BdthequeBundle\Document\Series',
                 'property' => 'title',
@@ -29,7 +32,7 @@ class ComicStripForm  extends AbstractType
                 'label' => 'Série',
                 'empty_value' => 'Choisir une série',
                 'empty_data'  => null))
-        ;
+            ->add('tome', 'integer');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

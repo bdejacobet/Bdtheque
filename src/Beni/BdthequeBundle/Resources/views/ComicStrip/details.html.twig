@@ -7,11 +7,23 @@
         <h3 class="txt-black">{{ oComicStrip.title }}</h3>
 
         <p>par {{ oComicStrip.author }}<br/>
+            {% if oComicStrip.ISBN %}
+                ISBN : {{ oComicStrip.ISBN }}<br/>
+            {% endif %}
+            {% if oComicStrip.editor %}
+                Editeur : {{ oComicStrip.editor }}<br/>
+            {% endif %}
+            {% if oComicStrip.category %}
+                Catégorie : {{ oComicStrip.category }}<br/>
+            {% endif %}
             {% if oComicStrip.series %}
                 Série : {{ oComicStrip.series.title }}<br/>
             {% endif %}
-            {% if oComicStrip.date %}
-                Date de parution : {{ oComicStrip.date|date("m/d/Y") }}<br/>
+            {% if oComicStrip.tome %}
+                Tome : {{ oComicStrip.tome }}<br/>
+            {% endif %}
+            {% if oComicStrip.legalDeposit %}
+                Depot légal : {{ oComicStrip.legalDeposit|date("m/d/Y") }}<br/>
             {% endif %}
             {% if oComicStrip.resume %}
                 {{ oComicStrip.resume }}<br/>

@@ -12,15 +12,6 @@
     </div>
     <div class="form_row row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
-            {{ form_label(form.series, 'Série') }}
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            {{ form_errors(form.series) }}
-            {{ form_widget(form.series) }}
-        </div>
-    </div>
-    <div class="form_row row">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
             {{ form_label(form.author, 'Auteur') }}
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -30,11 +21,56 @@
     </div>
     <div class="form_row row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
-            {{ form_label(form.date, 'Date de parution') }}
+            {{ form_label(form.ISBN, 'ISBN') }}
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            {{ form_errors(form.date) }}
-            {{ form_widget(form.date) }}
+            {{ form_errors(form.ISBN) }}
+            {{ form_widget(form.ISBN) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.editor, 'Editeur') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.editor) }}
+            {{ form_widget(form.editor) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+        {{ form_label(form.series, 'Série') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.series) }}
+            {{ form_widget(form.series) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.tome, 'Tome') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.tome) }}
+            {{ form_widget(form.tome) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.category, 'Categorie') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.category) }}
+            {{ form_widget(form.category) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.legal_deposit, 'Dépot légal') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.legal_deposit) }}
+            {{ form_widget(form.legal_deposit) }}
         </div>
     </div>
     <div class="form_row row">

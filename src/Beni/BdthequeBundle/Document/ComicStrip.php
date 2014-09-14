@@ -29,7 +29,22 @@ class ComicStrip
     /**
      * @var string
      */
+    protected $ISBN;
+
+    /**
+     * @var string
+     */
     protected $author;
+
+    /**
+     * @var string
+     */
+    protected $editor;
+
+    /**
+     * @var string
+     */
+    protected $category;
 
     /**
      * @var string
@@ -39,7 +54,7 @@ class ComicStrip
     /**
      * @var date
      */
-    protected $date;
+    protected $legalDeposit;
 
     /**
      * @var string
@@ -50,6 +65,11 @@ class ComicStrip
      * @var Series
      */
     protected $series;
+
+    /**
+     * @var integer
+     */
+    protected $tome;
 
     /**
      * @var arrayCollection
@@ -95,6 +115,31 @@ class ComicStrip
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get ISBN
+     *
+     * @return string $ISBN
+     */
+    public function getISBN()
+    {
+        return $this->ISBN;
+    }
+
+    /**
+     * Set ISBN
+     *
+     * @param $ISBN
+     *
+     * @internal param string $ISBN
+     * @return self
+     */
+    public function setISBN($ISBN)
+    {
+        $this->ISBN = $ISBN;
 
         return $this;
     }
@@ -149,25 +194,73 @@ class ComicStrip
     }
 
     /**
-     * Get date
+     * Get editor
      *
-     * @return date $date
+     * @return string $editor
      */
-    public function getDate()
+    public function getEditor()
     {
-        return $this->date;
+        return $this->editor;
+    }
+
+    /**
+     * Set editor
+     *
+     * @param string $editor
+     *
+     * @return self
+     */
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string $category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return self
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get legalDeposit
+     *
+     * @return date $legalDeposit
+     */
+    public function getLegalDeposit()
+    {
+        return $this->legalDeposit;
     }
 
     /**
      * Set date
      *
-     * @param date $date
+     * @param date $legalDeposit
      *
      * @return self
      */
-    public function setDate($date)
+    public function setLegalDeposit($legalDeposit)
     {
-        $this->date = $date;
+        $this->legalDeposit = $legalDeposit;
 
         return $this;
     }
@@ -218,6 +311,30 @@ class ComicStrip
     public function getSeries()
     {
         return $this->series;
+    }
+
+    /**
+     * Set tome
+     *
+     * @param integer $tome
+     *
+     * @return self
+     */
+    public function setTome($tome)
+    {
+        $this->tome = $tome;
+
+        return $this;
+    }
+
+    /**
+     * Get tome
+     *
+     * @return integer $tome
+     */
+    public function getTome()
+    {
+        return $this->tome;
     }
 
     /**
