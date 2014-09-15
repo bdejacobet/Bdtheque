@@ -51,11 +51,22 @@ chargement des fixtures :
 
 		"doctrine/doctrine-fixtures-bundle": "dev-master"
 
-*   suppression des anciennes données et recréation de la base de données vide
-
-		$ php app/console doctrine:mongodb:schema:drop
-		$ php app/console doctrine:mongodb:schema:create
-
 *   lancer le chargement des fixtures
 
 		$ php app/console doctrine:mongodb:fixtures:load
+
+import de Series et de ComicStrop via un fichier csv :
+----------------------------------
+
+*   ajouter le bundle suivant dans votre composer.json
+
+		"ddeboer/data-import-bundle": "~0.1"
+
+*   format du csv (venant de l'export de BDGuest ): IdLocal;IdAlbum;Series;Num;NumA;Titre;Editeur;EO;DL;Cote;Etat;DateAchat;PrixAchat;Note;Wishlist;AVendre;Perso1;Perso2;Perso3;Perso4;ISBN;Origine;Style;Collection;Scenariste;Dessinateur;Format;Statut;Suivi;Commentaire;AI
+*   dépot du fichier dans le répertoire /app/csv/
+*   lancement de la commande d'import :
+        Les séries (en fct du 'title') et les ComicStrip (en fct du ISBN) existantes ne sont pas recréées.
+        Les ComicStrip importés sont associés au user dont le username et passé en paramètre à la commande.
+
+		$ php app/console bdtheque:import "nom_fichier.csv" "username"
+
