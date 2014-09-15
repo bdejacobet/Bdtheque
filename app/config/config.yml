@@ -83,3 +83,7 @@ stof_doctrine_extensions:
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     mongodb:
         default: ~
+
+# import command
+parameters:
+    csv_path: "%kernel.root_dir%/Resources/csv/"
