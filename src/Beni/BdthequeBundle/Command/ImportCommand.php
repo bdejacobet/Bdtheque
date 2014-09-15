@@ -64,48 +64,50 @@ class ImportCommand extends ContainerAwareCommand
                     $author = array_shift($aNameFirstname); // suppression du prénom
                     $category = $row[22];
 
-                    $oComicStrip = $this
-                        ->getContainer()->get('doctrine_mongodb')
-                        ->getRepository('BeniBdthequeBundle:ComicStrip')
-                        ->findOneBy(array('ISBN' => $ISBN));
+                    if ($row[14] == '0' && $row[15] == '0') { //pour ne pas importer les comics en whishlist ou à vendre
 
-                    // new ComicStrip
-                    if (!$oComicStrip instanceof ComicStrip) {
-
-                        $oSeries = $this
+                        $oComicStrip = $this
                             ->getContainer()->get('doctrine_mongodb')
-                            ->getRepository('BeniBdthequeBundle:Series')
-                            ->findOneByTitle($seriesTitle);
-                        // new Series
-                        if (!$oSeries instanceof Series) {
-                            $oSeries = new Series();
-                            $oSeries->setTitle($seriesTitle);
-                            $em->persist($oSeries);
+                            ->getRepository('BeniBdthequeBundle:ComicStrip')
+                            ->findOneBy(array('ISBN' => $ISBN));
+
+                        // new ComicStrip
+                        if (!$oComicStrip instanceof ComicStrip) {
+
+                            $oSeries = $this
+                                ->getContainer()->get('doctrine_mongodb')
+                                ->getRepository('BeniBdthequeBundle:Series')
+                                ->findOneByTitle($seriesTitle);
+                            // new Series
+                            if (!$oSeries instanceof Series) {
+                                $oSeries = new Series();
+                                $oSeries->setTitle($seriesTitle);
+                                $em->persist($oSeries);
+                                $em->flush();
+
+                                $output->writeln('création de la série "' . $seriesTitle . '"');
+                                $nbSeries++;
+                            }
+
+                            $oComicStrip = new ComicStrip();
+                            $oComicStrip->setTitle($title);
+                            $oComicStrip->setISBN($ISBN);
+                            $oComicStrip->setLegalDeposit($legalDeposit);
+                            $oComicStrip->setAuthor($author);
+                            $oComicStrip->setEditor($editor);
+                            $oComicStrip->setCategory($category);
+                            $oComicStrip->setSeries($oSeries);
+                            $oComicStrip->setTome($tome);
+                            $oComicStrip->addUser($oUser);
+                            $em->persist($oComicStrip);
                             $em->flush();
 
-                            $output->writeln('création de la série "' . $seriesTitle . '"');
-                            $nbSeries++;
+                            $output->writeln('création de la BD "' . $title . '"');
+                            $nbComicStrip++;
+
                         }
-
-                        $oComicStrip = new ComicStrip();
-                        $oComicStrip->setTitle($title);
-                        $oComicStrip->setISBN($ISBN);
-                        $oComicStrip->setLegalDeposit($legalDeposit);
-                        $oComicStrip->setAuthor($author);
-                        $oComicStrip->setEditor($editor);
-                        $oComicStrip->setCategory($category);
-                        $oComicStrip->setSeries($oSeries);
-                        $oComicStrip->setTome($tome);
-                        $oComicStrip->addUser($oUser);
-                        $em->persist($oComicStrip);
-                        $em->flush();
-
-                        $output->writeln('création de la BD "' . $title . '"');
-                        $nbComicStrip++;
-
                     }
                 }
-
 
                 $output->writeln('<info>' . $nbSeries . ' séries crées en base de données</info>');
                 $output->writeln('<info>' . $nbComicStrip . ' comics strip crées en base de données</info>');
