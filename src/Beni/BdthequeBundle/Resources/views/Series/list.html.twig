@@ -4,15 +4,33 @@
 
 {% block body %}
     <h2 class="txt-white">Ma liste de séries</h2>
-    {% for oSeries in aSeries %}
+
+    <div class="well">
+        {# total items count #}
+        <span class="pagination-count">
+            {{ pagination.getTotalItemCount }} séries
+        </span>
+        {# sorting of properties based on query components #}
+        <span  class="pagination-bouton{% if pagination.isSorted('title') %} pagination-sorted{% endif %}">
+            {{ knp_pagination_sortable(pagination, 'Tri par titre', 'title') }}
+       </span>
+        <span class="pagination-bouton">
+            <a href="{{ path('beni_bdtheque_series_create') }}" class="btn btn-primary">Ajouter une série</a>
+        </span>
+    </div>
+
+    {# list #}
+    {% for oSeries in pagination %}
         <article class="well">
             <h3 class="txt-black">{{ oSeries.title }}</h3>
-            <a href="{{ path('beni_bdtheque_series_edit',{'idSeries':oSeries.id}) }}"
-               class="btn btn-primary">Modifier</a>
+            <a href="{{ path('beni_bdtheque_series_edit',{'idSeries':oSeries.id}) }}" class="btn btn-primary">Modifier</a>
             <a href="{{ path('beni_bdtheque_series_delete',{'idSeries':oSeries.id}) }}" class="btn btn-primary">Supprimer</a>
         </article>
     {% else %}
         <p>Pas (encore !) de série</p>
     {% endfor %}
-    <a href="{{ path('beni_bdtheque_series_create') }}" class="btn btn-primary">Ajouter une série</a>
+
+    {# display navigation #}
+    {{ knp_pagination_render(pagination) }}
+
 {% endblock %}

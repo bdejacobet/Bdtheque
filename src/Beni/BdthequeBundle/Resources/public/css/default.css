@@ -8,14 +8,15 @@ body {
     text-align: center;
 }
 
+/* Forms */
 label {
     margin-bottom: 0px;
 }
-
 .form_row {
     margin-bottom: 7px;
 }
 
+/* Typo */
 .txt-white {
     color: #ffffff;
 }
@@ -28,3 +29,17 @@ label {
     font-weight: bold;
 }
 
+/* pagination */
+.pagination-count {
+    text-align: left;
+    font-weight: bold;
+}
+.pagination-sort {
+    text-align: center;
+}
+.pagination-bouton {
+    text-align: right;
+}
+.pagination-sorted {
+    font-weight: bold;
+}

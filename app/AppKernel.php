@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Beni\BdthequeBundle\BeniBdthequeBundle(),
             new Beni\UserBundle\BeniUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

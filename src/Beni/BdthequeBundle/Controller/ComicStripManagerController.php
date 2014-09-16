@@ -25,13 +25,17 @@ class ComicStripManagerController extends Controller
      */
     public function ListAction()
     {
-        $aComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->findAllOrderedByTitle();
+        $em    = $this->get('doctrine_mongodb')->getManager();
+        $query = $em->createQueryBuilder('BeniBdthequeBundle:ComicStrip');
 
-        return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array(
-            'aComicStrip' => $aComicStrip
-        ));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array('pagination' => $pagination));
     }
 
     /**
@@ -43,13 +47,18 @@ class ComicStripManagerController extends Controller
     {
         $user = $this->_getLoggedUser();
 
-        $aComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->findAllByUserOrderedByTitle($user);
+        $em    = $this->get('doctrine_mongodb')->getManager();
+        $query = $em->createQueryBuilder('BeniBdthequeBundle:ComicStrip')
+                    ->field('users')->references($user);
 
-        return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array(
-            'aComicStrip' => $aComicStrip
-        ));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:list.html.twig', array('pagination' => $pagination));
     }
 
     /**
