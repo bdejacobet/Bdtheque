@@ -20,4 +20,5 @@ Beni\BdthequeBundle\Document\Series:
             targetDocument: Beni\BdthequeBundle\Document\ComicStrip
             cascade: all
             mappedBy: series
+            sort: tome
 

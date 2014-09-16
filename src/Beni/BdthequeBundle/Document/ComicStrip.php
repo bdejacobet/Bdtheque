@@ -67,7 +67,7 @@ class ComicStrip
     protected $series;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $tome;
 

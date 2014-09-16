@@ -17,7 +17,7 @@ Beni\BdthequeBundle\Document\ComicStrip:
         legalDeposit:
             type: date
         tome:
-            type: string
+            type: int
         category:
             type: string
         slug:

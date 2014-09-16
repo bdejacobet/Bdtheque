@@ -23,6 +23,13 @@
     {% for oSeries in pagination %}
         <article class="well">
             <h3 class="txt-black">{{ oSeries.title }}</h3>
+            {% for oComicStrip in oSeries.comicStrips %}
+                <p>
+                    <a href="{{ path('beni_bdtheque_comicstrip_details',{'idComicStrip':oComicStrip.id}) }}">{% if oComicStrip.tome %}{{ oComicStrip.tome }} - {% endif %}{{ oComicStrip.title }} ({{ oComicStrip.author }})</a>
+                </p>
+            {% else %}
+                <p>Pas (encore !) de BD</p>
+            {% endfor %}
             <a href="{{ path('beni_bdtheque_series_edit',{'idSeries':oSeries.id}) }}" class="btn btn-primary">Modifier</a>
             <a href="{{ path('beni_bdtheque_series_delete',{'idSeries':oSeries.id}) }}" class="btn btn-primary">Supprimer</a>
         </article>
