@@ -13,3 +13,5 @@ Pour tester:
  - integration continue avec Travis
 
 
+environnement : vagrant avec la configuration définie dans le fichier puphpet_config.yaml généré via https://puphpet.com/
+
