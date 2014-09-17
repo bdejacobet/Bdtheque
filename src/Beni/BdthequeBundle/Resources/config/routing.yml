@@ -53,3 +53,7 @@ beni_bdtheque_comicstrip_associate_user:
 beni_bdtheque_comicstrip_dissociate_user:
     pattern:  /comicstrip/dissociate/{idComicStrip}
     defaults: { _controller: BeniBdthequeBundle:ComicStripManager:dissociateToUser }
+
+beni_bdtheque_comicstrip_search:
+    pattern:  /comicstrip/search
+    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:search }

@@ -15,8 +15,9 @@ utilisation de mongodb :
 		use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 		AnnotationDriver::registerAnnotationClasses();
 
-*   configurer mongodb dans votre app/config/config.yml
+*	ajout de la configuration :
 
+		#Bdtheque\app\config\config.yml
 		doctrine_mongodb:
 			connections:
 				default:
@@ -30,8 +31,9 @@ utilisation de mongodb :
 utilisation de Assetic :
 ----------------------------------
 
-*   ajouter ce bundle dans la liste des bundles d'assetic dans votre app/config/config.yml
+*	ajout de la configuration :
 
+		#Bdtheque\app\config\config.yml
 		assetic:
             debug:          "%kernel.debug%"
             use_controller: false
@@ -62,6 +64,13 @@ import de Series et de ComicStrop via un fichier csv :
 
 		"ddeboer/data-import-bundle": "~0.1"
 
+* ajout de la configuration : chemin du répertoire où est déposé le fichier csv
+
+		#Bdtheque\app\config\config.yml
+		# import command
+        parameters:
+            csv_path: "%kernel.root_dir%/Resources/csv/"
+
 *   format du csv (venant de l'export de BDGuest ): IdLocal;IdAlbum;Series;Num;NumA;Titre;Editeur;EO;DL;Cote;Etat;DateAchat;PrixAchat;Note;Wishlist;AVendre;Perso1;Perso2;Perso3;Perso4;ISBN;Origine;Style;Collection;Scenariste;Dessinateur;Format;Statut;Suivi;Commentaire;AI
 *   dépot du fichier dans le répertoire /app/csv/
 *   lancement de la commande d'import :
@@ -70,3 +79,38 @@ import de Series et de ComicStrop via un fichier csv :
 
 		$ php app/console bdtheque:import "nom_fichier.csv" "username"
 
+ElasticSearch
+----------------------------------
+
+*   ajouter le bundle suivant dans votre composer.json
+
+		"friendsofsymfony/elastica-bundle": "3.0.*@dev"
+
+* ajout de la configuration
+
+		#Bdtheque\app\config\config.yml
+		# elastic search
+		fos_elastica:
+			clients:
+				default: { host: %elastic_host%, port: %elastic_port% }
+			indexes:
+				beni:
+					client: default
+					types:
+						ComicStrip:
+							mappings:
+								title :
+									type: string
+								author :
+									type: string
+							persistence:
+								driver: mongodb
+								model: Beni\BdthequeBundle\Document\ComicStrip
+								finder: ~
+								provider: ~
+								listener: ~
+								repository: Beni\BdthequeBundle\Repository\ComicStripSearchRepository
+
+*   lancement de l'indexation
+
+		app/console fos:elastica:populate

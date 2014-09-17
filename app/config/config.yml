@@ -99,3 +99,25 @@ knp_paginator:
 # import command
 parameters:
     csv_path: "%kernel.root_dir%/Resources/csv/"
+
+# elastic search
+fos_elastica:
+    clients:
+        default: { host: %elastic_host%, port: %elastic_port% }
+    indexes:
+        beni:
+            client: default
+            types:
+                ComicStrip:
+                    mappings:
+                        title :
+                            type: string
+                        author :
+                            type: string
+                    persistence:
+                        driver: mongodb
+                        model: Beni\BdthequeBundle\Document\ComicStrip
+                        finder: ~
+                        provider: ~
+                        listener: ~
+                        repository: Beni\BdthequeBundle\Repository\ComicStripSearchRepository

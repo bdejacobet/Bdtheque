@@ -3,10 +3,13 @@
 namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\ComicStrip;
+use Beni\BdthequeBundle\Document\ComicStripSearch;
 use Beni\BdthequeBundle\Form\ComicStripForm;
+use Beni\BdthequeBundle\Form\ComicStripSearchForm;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -75,7 +78,7 @@ class ComicStripManagerController extends Controller
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 try {
@@ -118,7 +121,7 @@ class ComicStripManagerController extends Controller
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 try {
@@ -275,5 +278,30 @@ class ComicStripManagerController extends Controller
         }
 
         return $oUser;
+    }
+
+    /**
+     * search comic strip
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchAction(Request $request)
+    {
+        $oComicStripSearch = new ComicStripSearch();
+
+        $form = $this->createForm(new ComicStripSearchForm, $oComicStripSearch);
+
+        $form->handleRequest($request);
+        $oComicStripSearch = $form->getData();
+
+        $elasticaManager = $this->container->get('fos_elastica.manager');
+        $results = $elasticaManager->getRepository('BeniBdthequeBundle:ComicStrip')->search($oComicStripSearch);
+
+        return $this->render('BeniBdthequeBundle:ComicStrip:search.html.twig',array(
+            'results' => $results,
+            'form' => $form->createView(),
+        ));
     }
 }

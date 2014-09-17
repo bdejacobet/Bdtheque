@@ -27,7 +27,8 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "ddeboer/data-import-bundle": "~0.1",
-        "knplabs/knp-paginator-bundle": "~2.4"
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "friendsofsymfony/elastica-bundle": "3.0.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

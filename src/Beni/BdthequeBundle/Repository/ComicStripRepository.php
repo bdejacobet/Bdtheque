@@ -42,5 +42,4 @@ class ComicStripRepository extends DocumentRepository
             ->getQuery()
             ->execute();
     }
-
 }

@@ -29,6 +29,8 @@ Beni\BdthequeBundle\Document\ComicStrip:
                 style: camel
                 fields:
                     - title
+        created:
+            type: date
     referenceOne:
         series:
             targetDocument: Beni\BdthequeBundle\Document\Series

@@ -1,0 +1,46 @@
+{% extends "BeniBdthequeBundle::Default/layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Recherche avancée de bd{% endblock %}
+
+{% block body %}
+    <h2 class="txt-white">Recherche avancée de BDs</h2>
+
+    <div class="well">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+                {{ form_label(form.title, 'Titre') }}
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+        </div>
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+                {{ form_label(form.author, 'Auteur') }}
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                {{ form_errors(form.author) }}
+                {{ form_widget(form.author) }}
+            </div>
+        </div>
+        <input type="submit" value="Rechercher" class="btn btn-primary"/>
+        {{ form_end(form) }}
+    </div>
+
+    {# list #}
+    {% for oComicStrip in results %}
+        <article class="well">
+            <h3 class="txt-black">{{ oComicStrip.title }}</h3>
+            <p>({{ oComicStrip.author }})</p>
+            <a href="{{ path('beni_bdtheque_comicstrip_details',{'idComicStrip':oComicStrip.id}) }}" class="btn btn-primary">Détails</a>
+            <a href="{{ path('beni_bdtheque_comicstrip_edit', {'idComicStrip':oComicStrip.id}) }}" class="btn btn-primary">Modifier</a>
+        </article>
+    {% else %}
+        <p>Pas (encore !) de BD</p>
+    {% endfor %}
+
+
+{% endblock %}

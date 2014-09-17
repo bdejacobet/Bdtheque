@@ -51,6 +51,12 @@
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
+
+            <ul class="nav navbar-nav">
+                <li {% if app.request.attributes.get('_route') == 'beni_bdtheque_comicstrip_search' %}class="active"{% endif %}>
+                    <a href="{{ path('beni_bdtheque_comicstrip_search') }}">Recherche avancée</a>
+                </li>
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
