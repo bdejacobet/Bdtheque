@@ -7,8 +7,8 @@ services:
     - mongodb
 
 before_script:
-    # installation de l'extension php mongodb
-    - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    # installation de l'extension php mongodb http://docs.travis-ci.com/user/languages/php/
+    - echo "extension = mongodb.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     # compte pour mongoDB
     - sleep 15
     - mongo bdtheque_database --eval 'db.addUser("travis", "test");'
