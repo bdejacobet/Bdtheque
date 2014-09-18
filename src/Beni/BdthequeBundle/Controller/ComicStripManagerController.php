@@ -26,7 +26,7 @@ class ComicStripManagerController extends Controller
      *
      * @return Response
      */
-    public function ListAction()
+    public function listAction()
     {
         $em    = $this->get('doctrine_mongodb')->getManager();
         $query = $em->createQueryBuilder('BeniBdthequeBundle:ComicStrip');
@@ -46,7 +46,7 @@ class ComicStripManagerController extends Controller
      *
      * @return Response
      */
-    public function MyListAction()
+    public function myListAction()
     {
         $user = $this->_getLoggedUser();
 
@@ -111,7 +111,7 @@ class ComicStripManagerController extends Controller
      *
      * @return Response
      */
-    public function EditAction($idComicStrip)
+    public function editAction($idComicStrip)
     {
 
         $oComicStrip = $this->get('doctrine_mongodb')
@@ -265,22 +265,6 @@ class ComicStripManagerController extends Controller
     }
 
     /**
-     * get user logged
-     *
-     * @return UserInterface $user
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
-     */
-    private function _getLoggedUser()
-    {
-        $oUser = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($oUser) || !$oUser instanceof UserInterface) {
-            throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
-        }
-
-        return $oUser;
-    }
-
-    /**
      * search comic strip
      *
      * @param Request $request
@@ -309,5 +293,21 @@ class ComicStripManagerController extends Controller
             'bSearch' => $bSearch,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * get user logged
+     *
+     * @return UserInterface $user
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
+    private function _getLoggedUser()
+    {
+        $oUser = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($oUser) || !$oUser instanceof UserInterface) {
+            throw new AccessDeniedException('Vous n\'avez pas accès à cette section');
+        }
+
+        return $oUser;
     }
 }

@@ -21,7 +21,7 @@ class SeriesManagerController extends Controller
      *
      * @return Response
      */
-    public function ListAction()
+    public function listAction()
     {
         $em    = $this->get('doctrine_mongodb')->getManager();
         $query = $em->createQueryBuilder('BeniBdthequeBundle:Series');

@@ -18,7 +18,7 @@ class HomeController extends Controller
      *
      * @return Response
      */
-    public function HomeAction()
+    public function homeAction()
     {
         return $this->render('BeniBdthequeBundle:Home:home.html.twig', array());
     }
