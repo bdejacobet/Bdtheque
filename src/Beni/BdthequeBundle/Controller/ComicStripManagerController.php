@@ -293,14 +293,20 @@ class ComicStripManagerController extends Controller
 
         $form = $this->createForm(new ComicStripSearchForm, $oComicStripSearch);
 
-        $form->handleRequest($request);
-        $oComicStripSearch = $form->getData();
-
-        $elasticaManager = $this->container->get('fos_elastica.manager');
-        $results = $elasticaManager->getRepository('BeniBdthequeBundle:ComicStrip')->search($oComicStripSearch);
+        if ($request->request->get('comic_strip_search_type')) {
+            $form->handleRequest($request);
+            $oComicStripSearch = $form->getData();
+            $elasticaManager = $this->container->get('fos_elastica.manager');
+            $results = $elasticaManager->getRepository('BeniBdthequeBundle:ComicStrip')->search($oComicStripSearch);
+            $bSearch = true;
+        } else {
+            $results = null;
+            $bSearch = false;
+        }
 
         return $this->render('BeniBdthequeBundle:ComicStrip:search.html.twig',array(
             'results' => $results,
+            'bSearch' => $bSearch,
             'form' => $form->createView(),
         ));
     }

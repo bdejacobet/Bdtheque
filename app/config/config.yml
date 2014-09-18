@@ -112,7 +112,9 @@ fos_elastica:
                     mappings:
                         title :
                             type: string
-                        author :
+                        scenarist :
+                            type: string
+                        designer :
                             type: string
                     persistence:
                         driver: mongodb

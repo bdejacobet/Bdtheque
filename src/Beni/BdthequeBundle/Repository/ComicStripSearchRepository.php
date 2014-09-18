@@ -26,17 +26,25 @@ class ComicStripSearchRepository extends Repository
      */
     public function search(ComicStripSearch $oComicStripSearch)
     {
-        // we create a query to return all the ComicStrip
-        // but if the criteria title is specified, we use it
+
+        $query = new \Elastica\Query\Match();
+
         if ($oComicStripSearch->getTitle() != null && $oComicStripSearch != '') {
-            $query = new \Elastica\Query\Match();
             $query->setFieldQuery('title', $oComicStripSearch->getTitle());
             $query->setFieldFuzziness('title', 0.7);
             $query->setFieldMinimumShouldMatch('title', '80%');
+        }
 
-            // TODO : ajouter recherche par auteur et serie
-        } else {
-            $query = new \Elastica\Query\MatchAll();
+        if ($oComicStripSearch->getDesigner() != null && $oComicStripSearch != '') {
+            $query->setFieldQuery('designer', $oComicStripSearch->getDesigner());
+            $query->setFieldFuzziness('designer', 0.7);
+            $query->setFieldMinimumShouldMatch('designer', '80%');
+        }
+
+        if ($oComicStripSearch->getScenarist() != null && $oComicStripSearch != '') {
+            $query->setFieldQuery('scenarist', $oComicStripSearch->getScenarist());
+            $query->setFieldFuzziness('scenarist', 0.7);
+            $query->setFieldMinimumShouldMatch('scenarist', '80%');
         }
 
         return $this->find($query);

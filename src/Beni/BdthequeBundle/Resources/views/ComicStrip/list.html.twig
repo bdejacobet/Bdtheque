@@ -14,8 +14,11 @@
         <span  class="pagination-bouton{% if pagination.isSorted('title') %} pagination-sorted{% endif %}">
             {{ knp_pagination_sortable(pagination, 'Tri par titre', 'title') }}
         </span>
-        <span  class="pagination-bouton{% if pagination.isSorted('title') %} pagination-sorted{% endif %}">
-            {{ knp_pagination_sortable(pagination, 'Tri par auteur', 'author') }}
+        <span  class="pagination-bouton{% if pagination.isSorted('designer') %} pagination-sorted{% endif %}">
+            {{ knp_pagination_sortable(pagination, 'Tri par desinateur', 'designer') }}
+        </span>
+        <span  class="pagination-bouton{% if pagination.isSorted('scenarist') %} pagination-sorted{% endif %}">
+            {{ knp_pagination_sortable(pagination, 'Tri par scénariste', 'scenarist') }}
         </span>
         <span class="pagination-bouton">
             <a href="{{ path('beni_bdtheque_series_create') }}" class="btn btn-primary">Ajouter une série</a>

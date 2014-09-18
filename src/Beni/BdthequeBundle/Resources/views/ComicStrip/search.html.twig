@@ -19,11 +19,20 @@
         </div>
         <div class="form_row row">
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
-                {{ form_label(form.author, 'Auteur') }}
+                {{ form_label(form.designer, 'Dessinateur') }}
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                {{ form_errors(form.author) }}
-                {{ form_widget(form.author) }}
+                {{ form_errors(form.designer) }}
+                {{ form_widget(form.designer) }}
+            </div>
+        </div>
+        <div class="form_row row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+                {{ form_label(form.scenarist, 'Scénariste') }}
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                {{ form_errors(form.scenarist) }}
+                {{ form_widget(form.scenarist) }}
             </div>
         </div>
         <input type="submit" value="Rechercher" class="btn btn-primary"/>
@@ -34,12 +43,16 @@
     {% for oComicStrip in results %}
         <article class="well">
             <h3 class="txt-black">{{ oComicStrip.title }}</h3>
-            <p>({{ oComicStrip.author }})</p>
+            <p>({{ oComicStrip.designer }} / {{ oComicStrip.scenarist }})</p>
             <a href="{{ path('beni_bdtheque_comicstrip_details',{'idComicStrip':oComicStrip.id}) }}" class="btn btn-primary">Détails</a>
             <a href="{{ path('beni_bdtheque_comicstrip_edit', {'idComicStrip':oComicStrip.id}) }}" class="btn btn-primary">Modifier</a>
         </article>
     {% else %}
-        <p>Pas (encore !) de BD</p>
+        {% if bSearch %}
+            <div class="well">
+                <p>Pas de résultat pour votre recherche</p>
+            </div>
+        {% endif %}
     {% endfor %}
 
 

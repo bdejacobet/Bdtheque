@@ -19,7 +19,8 @@ class ComicStripForm  extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('author', 'text')
+            ->add('designer', 'text')
+            ->add('scenarist', 'text')
             ->add('ISBN', 'text')
             ->add('editor', 'text')
             ->add('category', 'text')

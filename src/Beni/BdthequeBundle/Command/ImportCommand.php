@@ -60,8 +60,10 @@ class ImportCommand extends ContainerAwareCommand
                     $editor = $row[6];
                     $legalDeposit = '01/' . $row[8]; // on force le jour pour avoir une date valide
                     $ISBN = $row[20];
+                    $aNameFirstname = explode(',', $row[24]);
+                    $scenarist = array_shift($aNameFirstname); // suppression du prénom
                     $aNameFirstname = explode(',', $row[25]);
-                    $author = array_shift($aNameFirstname); // suppression du prénom
+                    $designer = array_shift($aNameFirstname); // suppression du prénom
                     $category = $row[22];
 
                     if ($row[14] == '0' && $row[15] == '0') { //pour ne pas importer les comics en whishlist ou à vendre
@@ -93,7 +95,8 @@ class ImportCommand extends ContainerAwareCommand
                             $oComicStrip->setTitle($title);
                             $oComicStrip->setISBN($ISBN);
                             $oComicStrip->setLegalDeposit($legalDeposit);
-                            $oComicStrip->setAuthor($author);
+                            $oComicStrip->setScenarist($scenarist);
+                            $oComicStrip->setDesigner($designer);
                             $oComicStrip->setEditor($editor);
                             $oComicStrip->setCategory($category);
                             $oComicStrip->setSeries($oSeries);

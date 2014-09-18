@@ -24,7 +24,8 @@ class LoadComicStripData extends AbstractFixture implements OrderedFixtureInterf
         $oComicStrip_1->setTitle('L\'ombre du Z');
         $oComicStrip_1->setISBN('2-105-206569-4');
         $oComicStrip_1->setLegalDeposit('01/01/1961');
-        $oComicStrip_1->setAuthor('Franquin');
+        $oComicStrip_1->setDesigner('Franquin');
+        $oComicStrip_1->setScenarist('Franquin');
         $oComicStrip_1->setEditor('Dupuis');
         $oComicStrip_1->setCategory('Aventure');
         $oComicStrip_1->setResume('Zorglub est vaincu. Spirou, Fantasio et le Comte de Champignac rentrent au château. Cependant, en survolant le village, ils réalisent que le policier Jérôme, qui n\'a pas été dézorglhommisé, a paralysé la quasi-totalité du village. Heureusement, ils parviennent rapidement à le capturer et à libérer le village…
@@ -40,7 +41,8 @@ class LoadComicStripData extends AbstractFixture implements OrderedFixtureInterf
         $oComicStrip_2->setTitle('Z comme Zorglub');
         $oComicStrip_2->setISBN('2-105-359569-5');
         $oComicStrip_2->setLegalDeposit('01/01/1962');
-        $oComicStrip_2->setAuthor('Franquin');
+        $oComicStrip_2->setDesigner('Franquin');
+        $oComicStrip_2->setScenarist('Franquin');
         $oComicStrip_2->setEditor('Dupuis');
         $oComicStrip_2->setCategory('Aventure');
         $oComicStrip_2->setResume('Fantasio reçoit un sèche-cheveux d\'une "charmante admiratrice", en l\'essayant il est pris d\'un malaise… Quelques minutes plus tard, il sort de la maison sous les yeux ébahis de Spirou pour "prendre l\'air". Il est en fait hypnotisé et se réveille à l\'arrière d\'une voiture sans chauffeur, télécommandée par un individu qui prétend s\'appeler Zorglub. Cependant, il perd le contrôle du véhicule et la voiture s\'encastre dans une vitrine. Spirou, en sortant de l\'hôpital avec le pauvre Fantasio, est hypnotisé à son tour, et revient le soir à la maison, porteur d\'un message du "Z" pour le Comte de Champignac. Peu de temps après, Zorglub, ancien camarade de promotion du comte, débarque chez lui pour lui proposer de se joindre à lui, mais le comte refuse vigoureusement. En sortant, il emmène le policier de Champignac, Jérôme, qui lui a manqué de respect.
@@ -53,8 +55,9 @@ class LoadComicStripData extends AbstractFixture implements OrderedFixtureInterf
 
         $oComicStrip_3 = new ComicStrip();
         $oComicStrip_3->setTitle('Gaffes a gogo');
-        $oComicStrip_1->setISBN('2-105-985134-6');
-        $oComicStrip_3->setAuthor('Franquin');
+        $oComicStrip_3->setISBN('2-105-985134-6');
+        $oComicStrip_3->setDesigner('Franquin');
+        $oComicStrip_3->setScenarist('Franquin');
         $oComicStrip_3->setEditor('Dupuis');
         $oComicStrip_3->setResume('plein de gags');
         $oComicStrip_3->setSeries($this->getReference('series_2'));

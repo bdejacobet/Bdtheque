@@ -23,7 +23,10 @@ class ComicStripSearchForm extends AbstractType
             ->add('title',null,array(
                 'required' => false,
             ))
-            ->add('author',null,array(
+            ->add('scenarist',null,array(
+                'required' => false,
+            ))
+            ->add('designer',null,array(
                 'required' => false,
             ))
         ;

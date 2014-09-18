@@ -12,11 +12,20 @@
     </div>
     <div class="form_row row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
-            {{ form_label(form.author, 'Auteur') }}
+            {{ form_label(form.designer, 'Desinateur') }}
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            {{ form_errors(form.author) }}
-            {{ form_widget(form.author) }}
+            {{ form_errors(form.designer) }}
+            {{ form_widget(form.designer) }}
+        </div>
+    </div>
+    <div class="form_row row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-lg-offset-2">
+            {{ form_label(form.scenarist, 'Scénariste') }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {{ form_errors(form.scenarist) }}
+            {{ form_widget(form.scenarist) }}
         </div>
     </div>
     <div class="form_row row">

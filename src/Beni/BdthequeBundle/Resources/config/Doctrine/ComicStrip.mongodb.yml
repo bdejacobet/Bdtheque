@@ -10,7 +10,11 @@ Beni\BdthequeBundle\Document\ComicStrip:
             type: string
         editor:
             type: string
-        author:
+        designer:
+            type: string
+        designer:
+            type: string
+        scenarist:
             type: string
         resume:
             type: string

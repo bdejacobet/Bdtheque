@@ -21,7 +21,12 @@ class ComicStripSearch
     /**
      * @var string
      */
-    protected $author;
+    protected $designer;
+
+    /**
+     * @var string
+     */
+    protected $scenarist;
 
     /**
      * Get title
@@ -47,26 +52,51 @@ class ComicStripSearch
 
         return $this;
     }
+
     /**
-     * Get author
+     * Get designer
      *
-     * @return string $author
+     * @return string $designer
      */
-    public function getAuthor()
+    public function getDesigner()
     {
-        return $this->author;
+        return $this->designer;
     }
 
     /**
-     * Set author
+     * Set designer
      *
-     * @param string $author
+     * @param string $designer
      *
      * @return self
      */
-    public function setAuthor($author)
+    public function setDesigner($designer)
     {
-        $this->author = $author;
+        $this->designer = $designer;
+
+        return $this;
+    }
+
+    /**
+     * Get scenarist
+     *
+     * @return string $scenarist
+     */
+    public function getScenarist()
+    {
+        return $this->scenarist;
+    }
+
+    /**
+     * Set scenarist
+     *
+     * @param string $scenarist
+     *
+     * @return self
+     */
+    public function setScenarist($scenarist)
+    {
+        $this->scenarist = $scenarist;
 
         return $this;
     }
