@@ -7,6 +7,8 @@ services:
     - mongodb
 
 before_script:
+    # Fix travis by installing mongo php ext
+    - pecl -q install mongo && echo "extension=mongo.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
     # compte pour mongoDB
     - sleep 15
     - mongo bdtheque_database --eval 'db.addUser("travis", "test");'
