@@ -9,7 +9,7 @@
 /bin/
 /composer.phar
 
-/web
+/web/bundles
 /.idea
 
 app/phpunit.xml
