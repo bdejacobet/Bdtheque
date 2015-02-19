@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Beni\BdthequeBundle\Form;
+namespace Beni\BdthequeBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

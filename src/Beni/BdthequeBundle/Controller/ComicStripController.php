@@ -4,8 +4,8 @@ namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\ComicStrip;
 use Beni\BdthequeBundle\Document\ComicStripSearch;
-use Beni\BdthequeBundle\Form\ComicStripForm;
-use Beni\BdthequeBundle\Form\ComicStripSearchForm;
+use Beni\BdthequeBundle\Form\Type\ComicStripForm;
+use Beni\BdthequeBundle\Form\Type\ComicStripSearchForm;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +50,7 @@ class ComicStripController extends Controller
      */
     public function myListAction()
     {
-        $user = $this->_getLoggedUser();
+        $user = $this->getLoggedUser();
 
         $em    = $this->get('doctrine_mongodb')->getManager();
         $query = $em->createQueryBuilder('BeniBdthequeBundle:ComicStrip')
@@ -203,7 +203,7 @@ class ComicStripController extends Controller
     public function associateToUserAction($idComicStrip)
     {
 
-        $oUser = $this->_getLoggedUser();
+        $oUser = $this->getLoggedUser();
 
         $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
@@ -234,7 +234,7 @@ class ComicStripController extends Controller
     public function dissociateToUserAction($idComicStrip)
     {
 
-        $oUser = $this->_getLoggedUser();
+        $oUser = $this->getLoggedUser();
 
         $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
@@ -291,7 +291,7 @@ class ComicStripController extends Controller
      * @return UserInterface $user
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      */
-    private function _getLoggedUser()
+    private function getLoggedUser()
     {
         $oUser = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($oUser) || !$oUser instanceof UserInterface) {

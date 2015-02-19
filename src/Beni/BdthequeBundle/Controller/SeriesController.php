@@ -3,7 +3,7 @@
 namespace Beni\BdthequeBundle\Controller;
 
 use Beni\BdthequeBundle\Document\Series;
-use Beni\BdthequeBundle\Form\SeriesForm;
+use Beni\BdthequeBundle\Form\Type\SeriesForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Config\Definition\Exception\Exception;
