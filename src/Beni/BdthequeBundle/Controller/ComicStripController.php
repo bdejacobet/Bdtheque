@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class ComicStripManagerController
@@ -18,6 +19,9 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
+
+const NB_ELEMENT_BY_PAGE = 10;
+
 class ComicStripController extends Controller
 {
 
@@ -82,9 +86,8 @@ class ComicStripController extends Controller
 
             if ($form->isValid()) {
                 try {
-                    $em = $this->get('doctrine_mongodb')->getManager();
-                    $em->persist($oComicStrip);
-                    $em->flush();
+
+                    $this->get('beni_bdtheque.comic_strip_manager')->save($oComicStrip);
 
                     $this->get('session')->getFlashBag()->add('success', 'BD bien créée');
 
@@ -125,9 +128,8 @@ class ComicStripController extends Controller
 
             if ($form->isValid()) {
                 try {
-                    $em = $this->get('doctrine_mongodb')->getManager();
-                    $em->persist($oComicStrip);
-                    $em->flush();
+
+                    $this->get('beni_bdtheque.comic_strip_manager')->save($oComicStrip);
 
                     $this->get('session')->getFlashBag()->add('success', 'BD bien mise à jour');
 
@@ -165,9 +167,8 @@ class ComicStripController extends Controller
             throw $this->createNotFoundException('ComicStrip [id=' . $idComicStrip . '] inexistant');
         } else {
 
-            $em = $this->get('doctrine_mongodb')->getManager();
-            $em->remove($oComicStrip);
-            $em->flush();
+            $this->get('beni_bdtheque.comic_strip_manager')->remove($oComicStrip);
+
             $this->get('session')->getFlashBag()->add('success', 'BD bien supprimée');
 
         }
@@ -219,10 +220,10 @@ class ComicStripController extends Controller
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
         } else {
 
-            $em = $this->get('doctrine_mongodb')->getManager();
             $oComicStrip->addUser($oUser);
-            $em->persist($oComicStrip);
-            $em->flush();
+
+            $this->get('beni_bdtheque.comic_strip_manager')->save($oComicStrip);
+
             $this->get('session')->getFlashBag()->add('success', '\'' . $oComicStrip->getTitle() . '\' a été ajouté à votre collection');
         }
 
@@ -252,10 +253,10 @@ class ComicStripController extends Controller
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
         } else {
 
-            $em = $this->get('doctrine_mongodb')->getManager();
             $oComicStrip->removeUser($oUser);
-            $em->persist($oComicStrip);
-            $em->flush();
+
+            $this->get('beni_bdtheque.comic_strip_manager')->save($oComicStrip);
+
             $this->get('session')->getFlashBag()->add('success', '\'' . $oComicStrip->getTitle() . '\' a été supprimé de votre collection');
         }
 

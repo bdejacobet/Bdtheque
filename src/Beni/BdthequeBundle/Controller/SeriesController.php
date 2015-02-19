@@ -6,6 +6,7 @@ use Beni\BdthequeBundle\Document\Series;
 use Beni\BdthequeBundle\Form\SeriesForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * Class SeriesManagerController
@@ -50,13 +51,12 @@ class SeriesController extends Controller
 
         $request = $this->get('request');
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 try {
-                    $em = $this->get('doctrine_mongodb')->getManager();
-                    $em->persist($oSeries);
-                    $em->flush();
+
+                    $this->get('beni_bdtheque.series_manager')->save($oSeries);
 
                     $this->get('session')->getFlashBag()->add('success', 'Série bien créée');
 
@@ -98,13 +98,11 @@ class SeriesController extends Controller
 
             $request = $this->get('request');
             if ($request->getMethod() == 'POST') {
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 if ($form->isValid()) {
                     try {
-                        $em = $this->get('doctrine_mongodb')->getManager();
-                        $em->persist($oSeries);
-                        $em->flush();
+                        $this->get('beni_bdtheque.series_manager')->save($oSeries);
 
                         $this->get('session')->getFlashBag()->add('success', 'Série bien mise à jour');
 
@@ -148,10 +146,8 @@ class SeriesController extends Controller
                 $this->get('session')->getFlashBag()->add('danger', 'Série ayant encore des BDs associées');
 
             } else {
+                $this->get('beni_bdtheque.series_manager')->remove($oSeries);
 
-                $em = $this->get('doctrine_mongodb')->getManager();
-                $em->remove($oSeries);
-                $em->flush();
                 $this->get('session')->getFlashBag()->add('success', 'Série bien supprimée');
             }
 

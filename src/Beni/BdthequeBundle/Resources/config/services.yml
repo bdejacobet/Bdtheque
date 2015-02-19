@@ -1,7 +1,18 @@
 parameters:
-#    beni_bdtheque.example.class: Beni\BdthequeBundle\Example
+    beni_bdtheque.comic_strip.document.class: Beni\BdthequeBundle\Document\ComicStrip
+    beni_bdtheque.comic_strip.manager.class: Beni\BdthequeBundle\Manager\ComicStripManager
+    beni_bdtheque.series.document.class: Beni\BdthequeBundle\Document\Series
+    beni_bdtheque.series.manager.class: Beni\BdthequeBundle\Manager\SeriesManager
 
 services:
-#    beni_bdtheque.example:
-#        class: %beni_bdtheque.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    beni_bdtheque.comic_strip_manager:
+        class: %beni_bdtheque.comic_strip.manager.class%
+        arguments:
+            - %beni_bdtheque.comic_strip.document.class%
+            - @doctrine_mongodb
+
+    beni_bdtheque.series_manager:
+        class: %beni_bdtheque.series.manager.class%
+        arguments:
+            - %beni_bdtheque.series.document.class%
+            - @doctrine_mongodb
