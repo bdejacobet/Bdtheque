@@ -3,7 +3,6 @@
 
 namespace Beni\BdthequeBundle\Form;
 
-use Beni\BdthequeBundle\Document\ComicStripSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
