@@ -64,6 +64,7 @@ class BaseManager
         }
 
     }
+
     /**
      * {@inheritdoc}
      */
@@ -72,6 +73,16 @@ class BaseManager
         $entity = $this->registry ->getRepository($this->class) ->find($id);
 
         return $entity;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAll()
+    {
+        $aEntities = $this->registry ->getRepository($this->class) ->findAll();
+
+        return $aEntities;
     }
 
 }

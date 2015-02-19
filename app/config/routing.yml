@@ -5,3 +5,8 @@ beni_user:
 beni_bdtheque:
     resource: "@BeniBdthequeBundle/Resources/config/routing.yml"
     prefix:   /
+
+beni_bdtheque_rest:
+    type : rest
+    resource: "@BeniBdthequeBundle/Resources/config/routing_rest.yml"
+    prefix:   /api/

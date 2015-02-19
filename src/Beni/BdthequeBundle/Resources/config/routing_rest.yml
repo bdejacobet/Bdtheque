@@ -1,0 +1,4 @@
+Api_bdtheque :
+  type : rest
+  resource: Beni\BdthequeBundle\Controller\Api\ComicStripController
+  name_prefix:  api_

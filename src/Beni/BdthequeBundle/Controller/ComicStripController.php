@@ -6,7 +6,9 @@ use Beni\BdthequeBundle\Document\ComicStrip;
 use Beni\BdthequeBundle\Document\ComicStripSearch;
 use Beni\BdthequeBundle\Form\Type\ComicStripForm;
 use Beni\BdthequeBundle\Form\Type\ComicStripSearchForm;
+
 use FOS\UserBundle\Model\UserInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

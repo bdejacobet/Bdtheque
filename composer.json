@@ -28,7 +28,11 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "ddeboer/data-import-bundle": "~0.1",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "friendsofsymfony/elastica-bundle": "3.0.*@dev"
+        "friendsofsymfony/elastica-bundle": "3.0.*@dev",
+
+        "friendsofsymfony/rest-bundle": "~1.1",
+        "jms/serializer-bundle": "~0.11",
+        "nelmio/api-doc-bundle": "~2.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

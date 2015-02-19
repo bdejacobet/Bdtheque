@@ -1,0 +1,7 @@
+Beni\BdthequeBundle\Document\Series:
+    exclusion_policy: ALL
+    properties :
+      id :
+        expose : true
+      title :
+        expose : true

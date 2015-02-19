@@ -1,0 +1,23 @@
+Beni\BdthequeBundle\Document\ComicStrip:
+    exclusion_policy: ALL
+    properties :
+      id :
+        expose : true
+      title :
+        expose : true
+#      ISBN :
+#        expose : true
+#      designer :
+#        expose : true
+#      scenarist :
+#        expose : true
+#      editor :
+#        expose : true
+#      category :
+#        expose : true
+#      legalDeposit :
+#        expose : true
+#      series :
+#        expose : true
+#      tome :
+#        expose : true
