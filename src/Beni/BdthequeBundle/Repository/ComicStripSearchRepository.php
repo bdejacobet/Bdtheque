@@ -29,19 +29,19 @@ class ComicStripSearchRepository extends Repository
 
         $query = new \Elastica\Query\Match();
 
-        if ($oComicStripSearch->getTitle() != null && $oComicStripSearch != '') {
+        if (!$oComicStripSearch->getTitle() && $oComicStripSearch != '') {
             $query->setFieldQuery('title', $oComicStripSearch->getTitle());
             $query->setFieldFuzziness('title', 0.7);
             $query->setFieldMinimumShouldMatch('title', '80%');
         }
 
-        if ($oComicStripSearch->getDesigner() != null && $oComicStripSearch != '') {
+        if (!$oComicStripSearch->getDesigner() && $oComicStripSearch != '') {
             $query->setFieldQuery('designer', $oComicStripSearch->getDesigner());
             $query->setFieldFuzziness('designer', 0.7);
             $query->setFieldMinimumShouldMatch('designer', '80%');
         }
 
-        if ($oComicStripSearch->getScenarist() != null && $oComicStripSearch != '') {
+        if (!$oComicStripSearch->getScenarist() && $oComicStripSearch != '') {
             $query->setFieldQuery('scenarist', $oComicStripSearch->getScenarist());
             $query->setFieldFuzziness('scenarist', 0.7);
             $query->setFieldMinimumShouldMatch('scenarist', '80%');

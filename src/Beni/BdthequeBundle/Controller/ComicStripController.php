@@ -161,7 +161,7 @@ class ComicStripController extends Controller
             ->getRepository('BeniBdthequeBundle:ComicStrip')
             ->find($idComicStrip);
 
-        if ($oComicStrip == null) {
+        if (!$oComicStrip) {
             throw $this->createNotFoundException('ComicStrip [id=' . $idComicStrip . '] inexistant');
         } else {
 

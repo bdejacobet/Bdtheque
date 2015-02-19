@@ -91,7 +91,7 @@ class SeriesController extends Controller
             ->getRepository('BeniBdthequeBundle:Series')
             ->find($idSeries);
 
-        if ($oSeries == null) {
+        if (!$oSeries) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
         } else {
             $form = $this->createForm(new Seriesform, $oSeries);
@@ -138,7 +138,7 @@ class SeriesController extends Controller
             ->find($idSeries);
 
 
-        if ($oSeries == null) {
+        if (!$oSeries) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
         } else {
 
