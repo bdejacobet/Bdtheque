@@ -44,7 +44,8 @@ class ImportCommand extends ContainerAwareCommand
             } else {
 
                 // entity manager
-                $em = $this->getContainer()->get('doctrine_mongodb')->getManager();
+                $comicStripManager = $this->getContainer()->get('beni_bdtheque.comic_strip_manager');
+                $seriesManager = $this->getContainer()->get('beni_bdtheque.comic_strip_manager');
 
                 // import data
                 $file = new \SplFileObject($fileName);
@@ -83,8 +84,8 @@ class ImportCommand extends ContainerAwareCommand
                             if (!$oSeries instanceof Series) {
                                 $oSeries = new Series();
                                 $oSeries->setTitle($seriesTitle);
-                                $em->persist($oSeries);
-                                $em->flush();
+
+                                $seriesManager->save($oSeries);
 
                                 $output->writeln('création de la série "' . $seriesTitle . '"');
                                 $nbSeries++;
@@ -101,8 +102,7 @@ class ImportCommand extends ContainerAwareCommand
                             $oComicStrip->setSeries($oSeries);
                             $oComicStrip->setTome($tome);
                             $oComicStrip->addUser($oUser);
-                            $em->persist($oComicStrip);
-                            $em->flush();
+                            $comicStripManager->save($oComicStrip);
 
                             $output->writeln('création de la BD "' . $title . '"');
                             $nbComicStrip++;

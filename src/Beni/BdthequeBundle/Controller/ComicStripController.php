@@ -20,8 +20,6 @@ use Symfony\Component\Config\Definition\Exception\Exception;
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
 
-const NB_ELEMENT_BY_PAGE = 10;
-
 class ComicStripController extends Controller
 {
 

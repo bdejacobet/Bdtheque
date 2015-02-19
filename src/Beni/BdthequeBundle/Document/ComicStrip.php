@@ -114,8 +114,7 @@ class ComicStrip
      *
      * @param $title
      *
-     * @internal param string $title
-     * @return self
+     * @return string $title
      */
     public function setTitle($title)
     {
@@ -139,8 +138,7 @@ class ComicStrip
      *
      * @param $ISBN
      *
-     * @internal param string $ISBN
-     * @return self
+     * @return string $ISBN
      */
     public function setISBN($ISBN)
     {
@@ -164,8 +162,7 @@ class ComicStrip
      *
      * @param $resume
      *
-     * @internal param string $resume
-     * @return self
+     * @return string $resume
      */
     public function setResume($resume)
     {
