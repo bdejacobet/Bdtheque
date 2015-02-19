@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-class SeriesManagerController extends Controller
+class SeriesController extends Controller
 {
 
     /**

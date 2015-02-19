@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @package Beni\BdthequeBundle\Controller
  * @author Benoit de Jacobet <benijaco@gmail.com>
  */
-class ComicStripManagerController extends Controller
+class ComicStripController extends Controller
 {
 
     /**

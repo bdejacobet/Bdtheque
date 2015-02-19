@@ -8,52 +8,52 @@ beni_bdtheque_home:
 
 beni_bdtheque_series_list:
     pattern:  /series/list
-    defaults: { _controller: BeniBdthequeBundle:SeriesManager:list }
+    defaults: { _controller: BeniBdthequeBundle:Series:list }
 
 beni_bdtheque_series_create:
     pattern:  /series/create
-    defaults: { _controller: BeniBdthequeBundle:SeriesManager:create }
+    defaults: { _controller: BeniBdthequeBundle:Series:create }
 
 beni_bdtheque_series_edit:
     pattern:  /series/edit/{idSeries}
-    defaults: { _controller: BeniBdthequeBundle:SeriesManager:edit }
+    defaults: { _controller: BeniBdthequeBundle:Series:edit }
 
 beni_bdtheque_series_delete:
     pattern:  /series/delete/{idSeries}
-    defaults: { _controller: BeniBdthequeBundle:SeriesManager:delete }
+    defaults: { _controller: BeniBdthequeBundle:Series:delete }
 
 beni_bdtheque_comicstrip_list:
     pattern:  /comicstrip/list
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:list }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:list }
 
 beni_bdtheque_comicstrip_mylist:
     pattern:  /comicstrip/mylist
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:myList }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:myList }
 
 beni_bdtheque_comicstrip_create:
     pattern:  /comicstrip/create
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:create }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:create }
 
 beni_bdtheque_comicstrip_edit:
     pattern:  /comicstrip/edit/{idComicStrip}
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:edit }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:edit }
 
 beni_bdtheque_comicstrip_delete:
     pattern:  /comicstrip/delete/{idComicStrip}
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:delete }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:delete }
 
 beni_bdtheque_comicstrip_details:
     pattern:  /comicstrip/details/{idComicStrip}
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:details }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:details }
 
 beni_bdtheque_comicstrip_associate_user:
     pattern:  /comicstrip/associate/{idComicStrip}
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:associateToUser }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:associateToUser }
 
 beni_bdtheque_comicstrip_dissociate_user:
     pattern:  /comicstrip/dissociate/{idComicStrip}
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:dissociateToUser }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:dissociateToUser }
 
 beni_bdtheque_comicstrip_search:
     pattern:  /comicstrip/search
-    defaults: { _controller: BeniBdthequeBundle:ComicStripManager:search }
+    defaults: { _controller: BeniBdthequeBundle:ComicStrip:search }
