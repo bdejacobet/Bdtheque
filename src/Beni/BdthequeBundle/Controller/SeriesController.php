@@ -86,10 +86,7 @@ class SeriesController extends Controller
      */
     public function editAction($idSeries)
     {
-
-        $oSeries = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:Series')
-            ->find($idSeries);
+        $oSeries = $this->get('beni_bdtheque.series_manager')->getById($idSeries);
 
         if (!$oSeries) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');
@@ -133,10 +130,7 @@ class SeriesController extends Controller
      */
     public function deleteAction($idSeries)
     {
-        $oSeries = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:Series')
-            ->find($idSeries);
-
+        $oSeries = $this->get('beni_bdtheque.series_manager')->getById($idSeries);
 
         if (!$oSeries) {
             throw $this->createNotFoundException('Series [id=' . $idSeries . '] inexistant');

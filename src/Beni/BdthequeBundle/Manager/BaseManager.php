@@ -40,7 +40,6 @@ class BaseManager
      */
     public function save($entity, $andFlush = true)
     {
-
         $em = $this->registry->getManager();
 
         $em->persist($entity);
@@ -56,7 +55,6 @@ class BaseManager
      */
     public function remove($entity, $andFlush = true)
     {
-
         $em = $this->registry->getManager();
 
         $em->remove($entity);
@@ -65,6 +63,15 @@ class BaseManager
             $em->flush();
         }
 
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getById($id)
+    {
+        $entity = $this->registry ->getRepository($this->class) ->find($id);
+
+        return $entity;
     }
 
 }

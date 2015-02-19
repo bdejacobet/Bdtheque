@@ -115,9 +115,8 @@ class ComicStripController extends Controller
     public function editAction($idComicStrip)
     {
 
-        $oComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->find($idComicStrip);
+        $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
+
         $form = $this->createForm(new ComicStripform, $oComicStrip);
 
         $request = $this->get('request');
@@ -157,9 +156,7 @@ class ComicStripController extends Controller
      */
     public function deleteAction($idComicStrip)
     {
-        $oComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->find($idComicStrip);
+        $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
         if (!$oComicStrip) {
             throw $this->createNotFoundException('ComicStrip [id=' . $idComicStrip . '] inexistant');
@@ -184,9 +181,7 @@ class ComicStripController extends Controller
      */
     public function detailsAction($idComicStrip)
     {
-        $oComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->find($idComicStrip);
+        $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
         if (!$oComicStrip) {
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
@@ -210,9 +205,7 @@ class ComicStripController extends Controller
 
         $oUser = $this->_getLoggedUser();
 
-        $oComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->find($idComicStrip);
+        $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
         if (!$oComicStrip) {
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
@@ -243,9 +236,7 @@ class ComicStripController extends Controller
 
         $oUser = $this->_getLoggedUser();
 
-        $oComicStrip = $this->get('doctrine_mongodb')
-            ->getRepository('BeniBdthequeBundle:ComicStrip')
-            ->find($idComicStrip);
+        $oComicStrip = $this->get('beni_bdtheque.comic_strip_manager')->getById($idComicStrip);
 
         if (!$oComicStrip) {
             throw $this->createNotFoundException('No ComicStrip found for id ' . $idComicStrip);
